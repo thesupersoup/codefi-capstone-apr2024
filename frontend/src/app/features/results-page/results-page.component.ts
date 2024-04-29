@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class ResultsPageComponent {
 
+
+  isContractorView = true
+
+  switch() {
+   this.isContractorView = !this.isContractorView
+
+   console.log(this.isContractorView)
+  }
 }
