@@ -24,16 +24,26 @@ const userSchema = new Schema({
       'Please fill a valid email "address',
     ],
   },
+  // Add the diffrent types of users for our application
   role: {
     type: String,
     required: true,
-    enum: ['user', 'admin'],
-    default: 'user',
+    enum: ['ADMIN', 'FREELANCER', 'CONTRACTOR'],
   },
   isVerified: {
     type: Boolean,
     default: false,
   },
+  profilePic: {
+    type: String,
+  },
+  // tie tags to the users
+  tags: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Tag',
+    },
+  ],
   verificationToken: String,
   verifiedAt: Date,
   passwordToken: String,
