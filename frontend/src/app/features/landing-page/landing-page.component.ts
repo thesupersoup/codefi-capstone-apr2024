@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './landing-page.component.scss'
 })
 export class LandingPageComponent {
+ isContractorView = true
 
+ switch() {
+  this.isContractorView = !this.isContractorView
+
+  console.log(this.isContractorView)
+ }
 }
