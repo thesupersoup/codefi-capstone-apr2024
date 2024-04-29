@@ -1,5 +1,4 @@
-<section id="body1" class="h-dvh" *ngIf="isContractorView">
-
+<section id="body1" class="h-dvh" *ngIf="isContractorViewEnabled">
   <div class="py-8 flex flex-col justify-end items-end">
     <label for="" class="flex flex-end mr-12">Looking for Work?</label>
     <button class="border border-slate-200 rounded mx-3 h-7.5" (click)="switch()">
@@ -7,41 +6,33 @@
       </div>
     </button>
   </div>
-
-
-
   <div class="flex justify-center items-center w-dvw my-32">
     <form action="" class="flex flex-col justify-center items-center w-full">
-      <label for="" class="text-4xl mb-8">Search For Freelancers</label>
+      <label for="" class="text-4xl mb-8 text-slate-100">Search For Freelancers</label>
       <input class="border border-black rounded w-1/2 h-12 text-2xl" type="text" placeholder="What Are You Looking For?">
       <button type="submit" class="border border-slate-200 rounded m-3 h-7.5">
-      <div class="bg-slate-100 hover:bg-slate-200 text-red-800 font-semibold  border-2 px-2 border-red-600 rounded">Search
-      </div></button>
-
+        <div class="bg-slate-100 hover:bg-slate-200 text-red-800 font-semibold  border-2 px-2 border-red-600 rounded">Search
+        </div>
+      </button>
     </form>
   </div>
 </section>
 
-<section id="body2" class="h-dvh" *ngIf="!isContractorView">
-
+<section id="body2" class="h-dvh" *ngIf="!isContractorViewEnabled">
   <div class="py-8 flex flex-col justify-end items-end">
     <label for="" class="flex flex-end mr-8">Looking for Freelancers?</label>
     <button class="border border-slate-200 rounded mx-3 h-7.5" (click)="switch()">
-      <div class="bg-slate-100 hover:bg-slate-200 text-red-800 font-semibold  border-2 px-2 border-red-600 rounded">Switch to Contractor View
-      </div>
+      <div class="bg-slate-100 hover:bg-slate-200 text-red-800 font-semibold  border-2 px-2 border-red-600 rounded">Switch to Contractor View</div>
     </button>
   </div>
-
-
-
   <div class="flex justify-center items-center w-dvw my-32">
     <form action="" class="flex flex-col justify-center items-center w-full">
       <label for="" class="text-4xl mb-8">Search For Jobs</label>
       <input class="border border-black rounded w-1/2 h-12 text-2xl" type="text" placeholder="What Are You Looking For?">
       <button type="submit" class="border border-slate-200 rounded m-3 h-7.5">
-      <div class="bg-slate-100 hover:bg-slate-200 text-red-800 font-semibold  border-2 px-2 border-red-600 rounded">Search
-      </div></button>
-
+        <div class="bg-slate-100 hover:bg-slate-200 text-red-800 font-semibold  border-2 px-2 border-red-600 rounded">Search
+        </div>
+      </button>
     </form>
   </div>
 </section>

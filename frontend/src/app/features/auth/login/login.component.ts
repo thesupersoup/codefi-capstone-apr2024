@@ -27,12 +27,9 @@ export class LoginComponent {
 
 		if (!formValue) return;
 
-		// this.authSubscription.add(
-		// 	this.authService.login(formValue).subscribe((res: any) => {
-		// 		res = res.data.user.role;
+		// this.authSubscription.add(this.authService.login(formValue).subscribe((res: any) =>
+    //   {res = res.data.user.role;
 		// 		console.log(res);
-
-
 		// 	})
 		// );
 	}

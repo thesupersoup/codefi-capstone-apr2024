@@ -1,93 +1,46 @@
 <main class="bg-gradient-to-b from-slate-500 to-slate-100 relative flex flex-col items-center h-[calc(100vh-64px)] pt-12">
-<div class="w-1/2">
-	<form formGroup="registerForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
-    <h1 class="font-semibold text-2xl text-center">User Details</h1>
-    <div class="flex flex-row justify-between">
-		<div class="flex flex-col">
-			<label for="firstName" class="text-md font-semibold">First Name</label>
-			<input
-				type="text"
-				class="input flex border rounded border-slate-800 w-full"
-				formControl="registerForm.controls.firstName"
-				id="firstName"
-			/>
-		</div>
-		<div class="flex flex-col">
-			<label for="middleInitial" class="text-md font-semibold">Middle Initial</label>
-			<input
-				type="text"
-				class="input flex border rounded border-slate-800 w-full"
-				formControl="registerForm.controls.middleInitial"
-				id="middleInitial"
-			/>
-		</div>
+  <div class="w-1/2">
+	  <form formGroup="registerForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+      <h1 class="font-semibold text-2xl text-center">User Details</h1>
+      <div class="flex flex-row justify-between w-full">
+		    <div class="flex flex-col w-3/4">
+			    <label for="firstName" class="text-md font-semibold">First Name</label>
+			    <input type="text" class="input flex border rounded border-slate-800 w-full" formControl="registerForm.controls.firstName" id="firstName"/>
+		    </div>
+		    <div class="flex flex-col ml-3">
+			    <label for="middleInitial" class="text-md font-semibold">Middle Initial</label>
+			    <input type="text" class="input flex border rounded border-slate-800 w-full" formControl="registerForm.controls.middleInitial" id="middleInitial"/>
+		    </div>
+      </div>
+		  <div class="flex flex-col">
+			  <label for="lastName" class="text-md font-semibold">Last Name</label>
+  			<input type="text" class="input flex border rounded border-slate-800" formControl="registerForm.controls.lastName" id="lastName"/>
+		  </div>
+      <div class="flex flex-col">
+			  <label for="phoneNumber" class="text-md font-semibold">Phone Number</label>
+			  <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="input flex border rounded border-slate-800" formControl="registerForm.controls.phoneNumber" id="phoneNumber" placeholder="ex. 555-555-1234"/>
+		  </div>
+      <div class="bg-slate-100 border border-slate-800 rounded flex flex-col">
+        <label class="text-md font-semibold pl-2 pt-2">I am a:</label>
+          <div class="flex flex-row pl-2">
+            <input type="radio" id="Freelancer" name="role" value="Freelancer" formControl="registerForm.controls.role">
+            <label for="role" class="pl-2">Freelancer Looking for Work</label>
+          </div>
+        <hr class="border border-slate-300">
+          <div class="flex flex-row pl-2">
+            <input type="radio" id="Contractor" name="role" value="Contractor" formControl="registerForm.controls.role">
+            <label for="role" class="pl-2">Project Owner Looking for Freelancers</label>
+          </div>
+      </div>
+		  <div class="flex flex-col gap-1">
+			  <label for="email" class="text-md font-semibold">Email</label>
+			  <input type="email" class="input flex border rounded border-slate-800" formControl="registerForm.controls.email" id="email"/>
+		  </div>
+		  <div class="flex flex-col gap-1">
+			  <label for="password" class="text-md font-semibold">Password</label>
+			  <input type="password" class="input flex border rounded border-slate-800" formControl="registerForm.controls.password" id="password"/>
+		  </div>
+		  <button [disabled]="!registerForm.valid" class="rounded border-2 border-blue-500 bg-zinc-200 hover:bg-zinc-100 w-1/2">Register</button>
+	  </form>
   </div>
-
-		<div class="flex flex-col">
-			<label for="lastName" class="text-md font-semibold">Last Name</label>
-			<input
-				type="text"
-				class="input  flex border rounded border-slate-800"
-				formControl="registerForm.controls.lastName"
-				id="lastName"
-			/>
-		</div>
-    <div class="flex flex-col">
-			<label for="phoneNumber" class="text-md font-semibold">Phone Number</label>
-			<input
-        type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-				class="input flex border rounded border-slate-800"
-				formControl="registerForm.controls.phoneNumber"
-				id="phoneNumber"
-        placeholder="ex. 555-555-1234"
-			/>
-		</div>
-
-    <div class="bg-slate-100 border border-slate-800 rounded flex flex-col">
-      <label class="text-md font-semibold pl-2 pt-2">I Am A:</label>
-        <div class="flex flex-row pl-2">
-          <input type="radio" id="Freelancer" name="role" value="Freelancer" formControl="registerForm.controls.role">
-          <label for="role" class="pl-2">Freelancer Looking for Work</label>
-        </div>
-      <hr class="border border-slate-300">
-        <div class="flex flex-row pl-2">
-          <input type="radio" id="Contractor" name="role" value="Contractor" formControl="registerForm.controls.role">
-          <label for="role" class="pl-2">Contractor Looking for Freelancers</label>
-        </div>
-    </div>
-
-		<div class="flex flex-col gap-1">
-			<label for="username" class="text-md font-semibold">Username</label>
-			<input
-				type="text"
-				class="input  flex border rounded border-slate-800"
-				formControl="registerForm.controls.username"
-				id="username"
-			/>
-		</div>
-		<div class="flex flex-col gap-1">
-			<label for="email" class="text-md font-semibold">Email</label>
-			<input
-				type="email"
-				class="input  flex border rounded border-slate-800"
-				formControl="registerForm.controls.email"
-				id="email"
-			/>
-		</div>
-		<div class="flex flex-col gap-1">
-			<label for="password" class="text-md font-semibold">Password</label>
-			<input
-				type="password"
-				class="input  flex border rounded border-slate-800"
-				formControl="registerForm.controls.password"
-				id="password"
-			/>
-		</div>
-
-		<button [disabled]="!registerForm.valid" class="rounded border-2 border-blue-500 bg-zinc-200 hover:bg-zinc-100 w-1/2">Register</button>
-
-
-
-	</form>
-</div>
 </main>
