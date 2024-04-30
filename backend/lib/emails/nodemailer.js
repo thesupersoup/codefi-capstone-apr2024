@@ -30,7 +30,7 @@ const sendVerificationEmail = async ({
   verificationToken,
 }) => {
   const url = `http://localhost:4200`
-  const verifyLink = `${url}/verify-email?token=${verificationToken}&email=${email}` // Create the verification link
+  const verifyLink = `${url}/verify?token=${verificationToken}&email=${email}` // Create the verification link
 
   // Create the message
   const message = `<h2>Welcome to Template</h2><p>Thanks for creating an account ${username}. click <a href="${verifyLink}" target="_blank">here</a> to verify your email</p>`
