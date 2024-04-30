@@ -22,7 +22,7 @@ import { ResultsPageComponent } from './features/results-page/results-page.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     provideClientHydration()
