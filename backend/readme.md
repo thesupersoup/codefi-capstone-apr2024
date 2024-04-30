@@ -24,6 +24,6 @@ NODEMAILER_PASSWORD=
 3. CREATE (POST) tag _/api/v1/tags_ (SEND IN REQUEST BODY)
 4. UPDATE (PATCH) tag _/api/v1/tags/<id>_
 5. DELETE tag _/api/v1/tags/<id>_
-6. GET users from tag _/api/v1/tags/users/<id>_
+6. GET all users from tag _/api/v1/tags/users/<id>_
 
 # ---------------------
