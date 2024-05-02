@@ -40,6 +40,9 @@ app.use('/api/v1/auth', require('./routes/auth.routes'))
 // tag routes
 app.use('/api/v1/tags', require('./routes/tags.routes'))
 
+// user routes
+app.use('/api/v1/users', require('./routes/user.routes'))
+
 // * START SERVER & DB
 ;(async () => {
   try {

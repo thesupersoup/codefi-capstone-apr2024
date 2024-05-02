@@ -4,8 +4,8 @@ const {
   getTagsByName,
   getTagById,
   createTag,
-  updateTagById,
-  deleteTagById,
+  assignUserToTag,
+  removeTagFromUser,
   getAllUsersFromTagById,
 } = require('../controllers/tags.controller')
 const { authenticateUser } = require('../middleware/auth.middleware')
@@ -14,8 +14,8 @@ const { authenticateUser } = require('../middleware/auth.middleware')
 router.get('/', getTagsByName)
 router.get('/:id', getTagById)
 router.post('/', authenticateUser, createTag)
-router.patch('/:id', authenticateUser, updateTagById)
-router.delete('/:id', authenticateUser, deleteTagById)
+router.patch('/:id', authenticateUser, assignUserToTag)
+router.delete('/:id', authenticateUser, removeTagFromUser)
 router.get('/users/:id', getAllUsersFromTagById)
 
 // * EXPORTS * //
