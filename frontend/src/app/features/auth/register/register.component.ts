@@ -16,7 +16,7 @@ export class RegisterComponent {
     middleInitial: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required]),
-    role: new FormControl('', [Validators.required]),
+    role: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]), // make sure it is a valid email address
     password: new FormControl('', [Validators.required]),
   });

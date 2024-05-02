@@ -3,6 +3,8 @@ const User = require('../models/User.model')
 const Tag = require('../models/Tag.model')
 
 // * CONTROLLERS * //
+// ang
+// angular tag id
 
 // TODO: FIND TAGS BY NAME (AUTO FILL)
 // Lets the users start typing to get the tag they want

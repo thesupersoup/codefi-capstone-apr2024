@@ -3,7 +3,7 @@
 >
   <div class="w-1/2">
     <form
-      formGroup="loginForm"
+      [formGroup]="loginForm"
       (ngSubmit)="onSubmit()"
       class="flex flex-col gap-6"
     >
@@ -13,7 +13,7 @@
         <input
           type="email"
           class="input flex border rounded border-slate-800 h-8 pl-2"
-          formControl="loginForm.controls.email"
+          formControlName="email"
           id="email"
         />
       </div>
@@ -22,15 +22,15 @@
         <input
           type="password"
           class="input flex border rounded border-slate-800 h-8 pl-2"
-          formControl="loginForm.controls.password"
+          formControlName="password"
           id="password"
         />
       </div>
       <div class="flex justify-center">
         <button
+          type="submit"
           [disabled]="!loginForm.valid"
-          class="rounded border-2 border-blue-500 bg-zinc-200 hover:bg-zinc-100 w-1/2"
-          (click)="onSubmit()"
+          class="rounded border-2 border-blue-500 bg-zinc-200 hover:bg-zinc-100 w-1/2 pl-2"
         >
           Login
         </button>

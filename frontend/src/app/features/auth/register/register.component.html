@@ -3,7 +3,7 @@
 >
   <div class="w-1/2">
     <form
-      formGroup="registerForm"
+      [formGroup]="registerForm"
       (ngSubmit)="onSubmit()"
       class="flex flex-col gap-4"
     >
@@ -16,7 +16,7 @@
           <input
             type="text"
             class="input flex border rounded border-slate-800 w-full pl-2"
-            formControl="registerForm.controls.firstName"
+            formControlName="firstName"
             id="firstName"
           />
         </div>
@@ -27,7 +27,7 @@
           <input
             type="text"
             class="input flex border rounded border-slate-800 w-full pl-2"
-            formControl="registerForm.controls.middleInitial"
+            formControlName="middleInitial"
             id="middleInitial"
           />
         </div>
@@ -37,7 +37,7 @@
         <input
           type="text"
           class="input flex border rounded border-slate-800 pl-2"
-          formControl="registerForm.controls.lastName"
+          formControlName="lastName"
           id="lastName"
         />
       </div>
@@ -49,20 +49,21 @@
           type="tel"
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           class="input flex border rounded border-slate-800 pl-2"
-          formControl="registerForm.controls.phoneNumber"
+          formControlName="phoneNumber"
           id="phoneNumber"
           placeholder="ex. 555-555-1234"
         />
       </div>
+
       <div class="bg-slate-100 border border-slate-800 rounded flex flex-col">
-        <label class="text-md font-semibold pl-2">I am a:</label>
+        <label class="text-md font-semibold pl-2 pt-2">I Am A:</label>
         <div class="flex flex-row pl-2">
           <input
             type="radio"
-            id="Freelancer"
+            id="freelancer"
             name="role"
             value="FREELANCER"
-            formControl="registerForm.controls.role"
+            formControlName="role"
           />
           <label for="role" class="pl-2">Freelancer Looking for Work</label>
         </div>
@@ -73,7 +74,7 @@
             id="Contractor"
             name="role"
             value="CONTRACTOR"
-            formControl="registerForm.controls.role"
+            formControlName="role"
           />
           <label for="role" class="pl-2"
             >Project Owner Looking for Freelancers</label
@@ -85,7 +86,7 @@
         <input
           type="email"
           class="input flex border rounded border-slate-800 pl-2"
-          formControl="registerForm.controls.email"
+          formControlName="email"
           id="email"
         />
       </div>
@@ -94,11 +95,13 @@
         <input
           type="password"
           class="input flex border rounded border-slate-800 pl-2"
-          formControl="registerForm.controls.password"
+          formControlName="password"
           id="password"
         />
       </div>
+
       <button
+        type="submit"
         [disabled]="!registerForm.valid"
         class="rounded border-2 border-blue-500 bg-zinc-200 hover:bg-zinc-100 w-1/2"
       >
