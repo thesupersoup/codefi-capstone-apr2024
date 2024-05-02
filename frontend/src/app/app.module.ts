@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +12,7 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { VerifyComponent } from './features/auth/verify/verify.component';
 import { NavbarComponent } from './features/navbar/navbar.component';
 import { ResultsPageComponent } from './features/results-page/results-page.component';
+import { UserProfilePageComponent } from './features/user-profile-page/user-profile-page.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +22,11 @@ import { ResultsPageComponent } from './features/results-page/results-page.compo
     LoginComponent,
     VerifyComponent,
     NavbarComponent,
-    ResultsPageComponent
+    ResultsPageComponent,
+    UserProfilePageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [
-    provideClientHydration()
-  ],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [provideClientHydration()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
