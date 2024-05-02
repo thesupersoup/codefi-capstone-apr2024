@@ -4,10 +4,7 @@ const Tag = require('../models/Tag.model')
 const { unsuccessfulRes, successfulRes } = require('../lib/utils/res')
 
 // * CONTROLLERS * //
-// ang
-// angular tag id
-
-// TODO: FIND TAGS BY NAME (AUTO FILL)
+//  FIND TAGS BY NAME (AUTO FILL)
 // Lets the users start typing to get the tag they want
 const getTagsByName = async (req, res) => {
   // GET ALL TAGS FROM DB (AUTO FILL)
