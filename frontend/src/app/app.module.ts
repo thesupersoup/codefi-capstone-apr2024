@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { RegisterComponent } from './features/auth/register/register.component';
@@ -18,15 +23,15 @@ import { ResultsPageComponent } from './features/results-page/results-page.compo
     LoginComponent,
     VerifyComponent,
     NavbarComponent,
-    ResultsPageComponent
+    ResultsPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [
-    provideClientHydration()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideClientHydration()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

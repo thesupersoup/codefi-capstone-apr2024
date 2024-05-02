@@ -15,7 +15,15 @@ const { sendVerificationEmail, sendEmail } = require('../lib/emails/nodemailer')
 // Register User
 const registerUser = async (req, res) => {
   // get data from request body
-  const { username, email, password } = req.body
+  const {
+    firstName,
+    lastName,
+    middleInital,
+    phoneNumber,
+    email,
+    password,
+    role,
+  } = req.body
 
   // if no email or password, return error
   if (!email || !password) {
@@ -27,8 +35,12 @@ const registerUser = async (req, res) => {
 
   // create new user
   const newUser = await User.create({
-    username,
+    firstName,
+    lastName,
+    middleInital,
+    phoneNumber,
     email,
+    role,
     password,
     verificationToken,
   })
