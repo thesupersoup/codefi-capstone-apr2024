@@ -37,6 +37,9 @@ app.use(xss()) // XSS
 // auth routes
 app.use('/api/v1/auth', require('./routes/auth.routes'))
 
+// tag routes
+app.use('/api/v1/tags', require('./routes/tags.routes'))
+
 // * START SERVER & DB
 ;(async () => {
   try {

@@ -5,6 +5,8 @@ import {
 } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { RegisterComponent } from './features/auth/register/register.component';
@@ -25,7 +27,12 @@ import { UserProfilePageComponent } from './features/user-profile-page/user-prof
     ResultsPageComponent,
     UserProfilePageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })
