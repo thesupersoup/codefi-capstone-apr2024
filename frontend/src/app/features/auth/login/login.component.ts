@@ -30,6 +30,7 @@ export class LoginComponent {
         .subscribe(
           (response) => {
             console.log(response);
+            this.router.navigate(['/']);
           },
           (error) => {
             console.error('Error:', error); // Handle error
