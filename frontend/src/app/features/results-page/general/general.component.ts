@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './general.component.scss'
 })
 export class GeneralComponent {
-  isContractorView = true
+  isContractorView = true;
   switch() {
    this.isContractorView = !this.isContractorView
   }

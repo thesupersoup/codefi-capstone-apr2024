@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 export class ContractorHomeComponent {
   isContractorViewEnabled = true
 
-  searchforFreelancersForm = new FormGroup({
+  searchForFreelancersForm = new FormGroup({
     tag: new FormControl("", [Validators.required])
   });
 
-  searchforManagersForm = new FormGroup({
+  searchForManagersForm = new FormGroup({
     tag: new FormControl("", [Validators.required])
   })
 
@@ -25,12 +25,12 @@ export class ContractorHomeComponent {
 
   // Submit Function
   onSubmit() {
-   if (this.searchforFreelancersForm.invalid && this.searchforManagersForm.invalid) return;
+   if (this.searchForFreelancersForm.invalid && this.searchForManagersForm.invalid) return;
 
-   if (this.searchforFreelancersForm.valid) {
-    const formValue = this.searchforFreelancersForm.getRawValue();
-   } if (this.searchforManagersForm.valid) {
-    const formValue = this.searchforManagersForm.getRawValue();
+   if (this.searchForFreelancersForm.valid) {
+    const formValue = this.searchForFreelancersForm.getRawValue();
+   } if (this.searchForManagersForm.valid) {
+    const formValue = this.searchForManagersForm.getRawValue();
    } else {
     return
    }
