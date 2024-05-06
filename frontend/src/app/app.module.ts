@@ -19,6 +19,7 @@ import { GeneralHomeComponent } from './features/landing-page/general-home/gener
 import { GeneralComponent } from './features/results-page/general/general.component';
 import { ContractorComponent } from './features/results-page/contractor/contractor.component';
 import { FreelancerComponent } from './features/results-page/freelancer/freelancer.component';
+import { FooterComponent } from './features/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FreelancerComponent } from './features/results-page/freelancer/freelanc
     GeneralComponent,
     ContractorComponent,
     FreelancerComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
