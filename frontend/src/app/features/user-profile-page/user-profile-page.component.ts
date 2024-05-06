@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from 'express';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -13,3 +14,4 @@ export class UserProfilePageComponent {}
 //TODO: add auto gen name/email/phone/role/profile pic pull userID from backend
 //TODO: add password change/reset logic
 //TODO: add/edit tag function
+//TODO: check svg for html edit tag buttons
