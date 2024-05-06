@@ -5,6 +5,8 @@ require('express-async-errors')
 const express = require('express')
 const app = express()
 const connectToMongo = require('./lib/db/mongoose-connect')
+const fileUpload = require('express-fileupload')
+const cloudinary = require('cloudinary').v2
 
 // SECURITY
 const cookieParser = require('cookie-parser')
@@ -12,6 +14,13 @@ const helmet = require('helmet')
 const cors = require('cors')
 const xss = require('xss-clean')
 const rateLimiter = require('express-rate-limit')
+
+// Cloudinary Config
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+})
 
 // * MIDDLEWARES
 app.set('trust proxy', 1) // Trust First Proxy
@@ -24,6 +33,7 @@ app.use(
   })
 ) // Rate Limited (Prevents Brute Force Attacks)
 app.use(express.json()) // Body Parser
+app.use(fileUpload({ useTempFiles: true })) // Temporary File Upload for Cloudinary
 app.use(helmet()) // Header Security
 app.use(
   cors({
