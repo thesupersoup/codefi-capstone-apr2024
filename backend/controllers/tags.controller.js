@@ -1,20 +1,47 @@
 // * IMPORTS * //
 const User = require('../models/User.model')
 const Tag = require('../models/Tag.model')
+const { unsuccessfulRes, successfulRes } = require('../lib/utils/res')
 
 // * CONTROLLERS * //
-// ang
-// angular tag id
-
-// TODO: FIND TAGS BY NAME (AUTO FILL)
+//  FIND TAGS BY NAME (AUTO FILL)
 // Lets the users start typing to get the tag they want
-const getTagsByName = async () => {
-  // get the name from the query params
-  const { name } = req.query
+const getTagsByName = async (req, res) => {
+  // GET ALL TAGS FROM DB (AUTO FILL)
+  const allTags = await Tag.aggregate([
+    {
+      $search: {
+        index: 'autocomplete',
+        autocomplete: {
+          query: req.query.name,
+          path: 'name',
+          fuzzy: {
+            maxEdits: 1,
+          },
+          tokenOrder: 'sequential',
+        },
+      },
+    },
+    {
+      $project: {
+        name: 1,
+        _id: 1,
+      },
+    },
+    {
+      $limit: 5,
+    },
+  ])
+
+  // return the tags
+  return successfulRes({
+    res,
+    data: allTags,
+  })
 }
 
 // FIND SINGLE TAG BY ID
-const getTagById = async () => {
+const getTagById = async (req, res) => {
   // get the id from the params
   const { id } = req.params
 
@@ -37,14 +64,24 @@ const getTagById = async () => {
 }
 
 // CREATE TAG
-const createTag = async () => {
+const createTag = async (req, res) => {
   // get the data from the request body
-  const info = req.body
+  const { name } = req.body
 
   // create a new tag
   const newTag = await Tag.create({
-    info,
+    name,
+    users: [req.user.userId],
   })
+
+  // get the user from the db
+  const foundUser = await User.findById(req.user.userId)
+
+  // and the new tag id to the user
+  foundUser.tags.push(newTag._id)
+
+  //save the user
+  foundUser.save()
 
   // return the new tag
   return successfulRes({
@@ -55,15 +92,16 @@ const createTag = async () => {
 
 // UPDATE TAG BY ID
 // change an existing tag
-const updateTagById = async () => {
+const assignUserToTag = async (req, res) => {
   // get the id from the params
   const { id } = req.params
 
   // get the data from the request body
-  const info = req.body
+  const userId = req.user.userId
 
   // find the tag by id
   const tag = await Tag.findById(id)
+  console.log(tag)
 
   // check if the tag exists
   if (!tag) {
@@ -73,25 +111,33 @@ const updateTagById = async () => {
     })
   }
 
-  // update the tag
-  const updatedTag = await Tag.findByIdAndUpdate(id, info, {
-    new: true,
-  })
+  // push the new user to the tag
+  await tag.users.push(userId)
+
+  // find the user by the id
+  const foundUser = await User.findById(userId)
+
+  // and the new tag id to the user
+  await foundUser.tags.push(tag._id)
+
+  tag.save()
+  foundUser.save()
 
   // return the updated tag
   return successfulRes({
     res,
-    data: updatedTag,
+    data: foundUser,
   })
 }
 
 // DELETE TAG BY ID
-const deleteTagById = async () => {
+const removeTagFromUser = async (req, res) => {
   // get the id from the params
   const { id } = req.params
 
   // find the tag by id
   const tag = await Tag.findById(id)
+  console.log(tag)
 
   // check if the tag exists
   if (!tag) {
@@ -101,8 +147,17 @@ const deleteTagById = async () => {
     })
   }
 
-  // delete the tag
-  await Tag.findByIdAndDelete(id)
+  // find the user by the id
+  const userId = req.user.userId
+
+  // find the user by the id
+  const foundUser = await User.findById(userId)
+
+  // remove that tag from the tags array off the user
+  foundUser.tags = foundUser.tags.filter((tagId) => tagId.toString() !== id)
+
+  // save the user
+  foundUser.save()
 
   // return the deleted tag
   return successfulRes({
@@ -112,8 +167,7 @@ const deleteTagById = async () => {
 }
 
 // GET ALL USERS FROM A TAG
-// ! NEED TO TEST
-const getAllUsersFromTagById = async () => {
+const getAllUsersFromTagById = async (req, res) => {
   // get the id from the params
   const { id } = req.params
 
@@ -132,7 +186,22 @@ const getAllUsersFromTagById = async () => {
   const userIds = tag.users
 
   // get all the users from the user ids
-  const users = await User.find({ _id: { $in: userIds } })
+  const foundUsers = await User.find({ _id: { $in: userIds } })
+
+  let users = []
+
+  // for every user update the information
+  for (let user of foundUsers) {
+    newUser = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      middleInital: user.middleInital,
+      email: user.email,
+      role: user.role,
+      tags: user.tags,
+    }
+    users.push(newUser)
+  }
 
   // return the users
   return successfulRes({
@@ -147,7 +216,7 @@ module.exports = {
   getTagsByName,
   getTagById,
   createTag,
-  updateTagById,
-  deleteTagById,
+  assignUserToTag,
+  removeTagFromUser,
   getAllUsersFromTagById,
 }

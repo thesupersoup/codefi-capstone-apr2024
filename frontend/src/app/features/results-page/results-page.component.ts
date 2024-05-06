@@ -6,13 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './results-page.component.scss'
 })
 export class ResultsPageComponent {
+  isAuthorized = false;
+  isContractor = true;
+  isFreelancer = false;
 
-
-  isContractorView = true
-
-  switch() {
-   this.isContractorView = !this.isContractorView
-
-   console.log(this.isContractorView)
-  }
+  // Need Logic to Switch Views
 }

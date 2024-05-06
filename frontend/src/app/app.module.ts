@@ -3,7 +3,6 @@ import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +14,13 @@ import { VerifyComponent } from './features/auth/verify/verify.component';
 import { NavbarComponent } from './features/navbar/navbar.component';
 import { ResultsPageComponent } from './features/results-page/results-page.component';
 import { UserProfilePageComponent } from './features/user-profile-page/user-profile-page.component';
+import { ContractorHomeComponent } from './features/landing-page/contractor-home/contractor-home.component';
+import { FreelancerHomeComponent } from './features/landing-page/freelancer-home/freelancer-home.component';
+import { GeneralHomeComponent } from './features/landing-page/general-home/general-home.component';
+import { GeneralComponent } from './features/results-page/general/general.component';
+import { ContractorComponent } from './features/results-page/contractor/contractor.component';
+import { FreelancerComponent } from './features/results-page/freelancer/freelancer.component';
+import { FooterComponent } from './features/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +32,13 @@ import { UserProfilePageComponent } from './features/user-profile-page/user-prof
     NavbarComponent,
     ResultsPageComponent,
     UserProfilePageComponent,
+    ContractorHomeComponent,
+    FreelancerHomeComponent,
+    GeneralHomeComponent,
+    GeneralComponent,
+    ContractorComponent,
+    FreelancerComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
