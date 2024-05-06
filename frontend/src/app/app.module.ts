@@ -14,6 +14,7 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { VerifyComponent } from './features/auth/verify/verify.component';
 import { NavbarComponent } from './features/navbar/navbar.component';
 import { ResultsPageComponent } from './features/results-page/results-page.component';
+import { FooterComponent } from './features/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ResultsPageComponent } from './features/results-page/results-page.compo
     VerifyComponent,
     NavbarComponent,
     ResultsPageComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

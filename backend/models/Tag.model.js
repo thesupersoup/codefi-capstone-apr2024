@@ -7,7 +7,8 @@ const tagModel = new Schema({
   name: {
     type: String,
     required: true,
-    maxLength: 25,
+    maxLength: 32,
+    unique: true,
   },
   // tie users to the tags model
   users: [
