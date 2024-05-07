@@ -47,7 +47,6 @@ const uploadSingleImageToCloudinary = async (req, res) => {
 }
 
 // Get All User Profile Data
-// TODO: User { Name, Email, Phone Number, Profile Picutre, Tags[] }
 const getAllUserDataById = async (req, res) => {
   // get the user id from the req user
   const userId = req.user.userId
