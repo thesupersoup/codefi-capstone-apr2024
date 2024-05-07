@@ -1,42 +1,77 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { TagService } from '../../../shared/services/tag.service';
 
 @Component({
   selector: 'app-general-home',
   templateUrl: './general-home.component.html',
-  styleUrl: './general-home.component.scss'
+  styleUrl: './general-home.component.scss',
 })
 export class GeneralHomeComponent {
-isContractorViewEnabled = true
+  isContractorViewEnabled = true;
+  tags: any[];
 
-searchForFreelancersForm = new FormGroup({
-  tag: new FormControl("", [Validators.required])
-});
+  searchForFreelancersForm = new FormGroup({
+    tag: new FormControl('', [Validators.required]),
+  });
 
-searchForManagersForm = new FormGroup({
-  tag: new FormControl("", [Validators.required])
-})
+  searchForManagersForm = new FormGroup({
+    tag: new FormControl('', [Validators.required]),
+  });
 
-constructor(
-  private formBuilder: FormBuilder,
-  private router: Router
-) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private tagService: TagService
+  ) {}
 
-// Submit Function
-onSubmit() {
- if (this.searchForFreelancersForm.invalid && this.searchForManagersForm.invalid) return;
+  autoFreelancerSearch() {
+    const searchFreeResults = this.tagService
+      .getTagsByName(this.searchForFreelancersForm.value.tag)
+      .subscribe((res) => {
+        console.log(res);
+        this.tags = res;
+      });
 
- if (this.searchForFreelancersForm.valid) {
-  const formValue = this.searchForFreelancersForm.getRawValue();
- } if (this.searchForManagersForm.valid) {
-  const formValue = this.searchForManagersForm.getRawValue();
- } else {
-  return
- }
-}
+    console.log(this.tags);
+    // console.log(searchFreeResults);
+    // return searchFreeResults;
+  }
 
- switch() {
-  this.isContractorViewEnabled = !this.isContractorViewEnabled
- }
+  autoContractorSearch() {
+    const searchContResults = this.tagService
+      .getTagsByName(this.searchForManagersForm.value.tag)
+      .subscribe((res) => {
+        console.log(res);
+        this.tags = res;
+      });
+  }
+
+  // Submit Function
+  onSubmit() {
+    if (
+      this.searchForFreelancersForm.invalid &&
+      this.searchForManagersForm.invalid
+    )
+      return;
+
+    if (this.searchForFreelancersForm.valid) {
+      const formValue = this.searchForFreelancersForm.getRawValue();
+    }
+    if (this.searchForManagersForm.valid) {
+      const formValue = this.searchForManagersForm.getRawValue();
+    } else {
+      return;
+    }
+  }
+
+  switch() {
+    this.isContractorViewEnabled = !this.isContractorViewEnabled;
+  }
 }
