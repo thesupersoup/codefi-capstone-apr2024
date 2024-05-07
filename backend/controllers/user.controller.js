@@ -66,8 +66,6 @@ const getAllUserDataById = async (req, res) => {
   let tags = []
   for (let tag of user.tags) {
     const foundTag = await Tag.findById(tag)
-    console.log(foundTag)
-
     tags.push(foundTag.name)
   }
 
