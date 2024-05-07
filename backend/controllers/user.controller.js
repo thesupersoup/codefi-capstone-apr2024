@@ -79,6 +79,7 @@ const getAllUserDataById = async (req, res) => {
       email: user.email,
       phoneNumber: user.phoneNumber,
       profilePicture: user.profilePic,
+      role: user.role,
       tags: tags,
     },
   })
