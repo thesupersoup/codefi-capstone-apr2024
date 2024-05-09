@@ -50,22 +50,16 @@ const userSchema = new Schema({
   profilePic: {
     type: String,
   },
-  // tie tags to the users
-  tags: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Tag',
-      // Add a custom vallidator function that checks that the tags array is no longer than 5
-      validate: {
-        validator: function (tagArray) {
-          // Ensure the length of tags array does not exceed 5
-          return tagArray.length <= 5
-        },
-        message: 'User can have maximum 5 tags',
+  tags: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Tag',
+    validate: {
+      validator: function (v) {
+        return v.length <= 5
       },
+      message: 'User can have a maximum of 5 tags',
     },
-  ],
-
+  },
   verificationToken: String,
   verifiedAt: Date,
   passwordToken: String,

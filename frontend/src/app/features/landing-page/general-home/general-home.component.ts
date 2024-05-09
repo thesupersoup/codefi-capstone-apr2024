@@ -1,42 +1,61 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { TagService } from '../../../shared/services/tag.service';
+import { Tag } from '../../../shared/models/tag.model';
 
 @Component({
   selector: 'app-general-home',
   templateUrl: './general-home.component.html',
-  styleUrl: './general-home.component.scss'
+  styleUrl: './general-home.component.scss',
 })
 export class GeneralHomeComponent {
-isContractorViewEnabled = true
+  isContractorViewEnabled = true;
+  tags: Tag[];
+  tagID: string;
 
-searchForFreelancersForm = new FormGroup({
-  tag: new FormControl("", [Validators.required])
-});
+  searchForm = new FormGroup({
+    tag: new FormControl('', [Validators.required]),
+  });
 
-searchForManagersForm = new FormGroup({
-  tag: new FormControl("", [Validators.required])
-})
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private tagService: TagService
+  ) {}
 
-constructor(
-  private formBuilder: FormBuilder,
-  private router: Router
-) {}
+  autoSearch() {
+    const searchResults = this.tagService
+      .getTagsByName(this.searchForm.value.tag)
+      .subscribe((res) => {
+        this.tags = res;
+      });
+  }
 
-// Submit Function
-onSubmit() {
- if (this.searchForFreelancersForm.invalid && this.searchForManagersForm.invalid) return;
+  setValue(id) {
+    this.tagID = id
+    return this.tagID
+  }
 
- if (this.searchForFreelancersForm.valid) {
-  const formValue = this.searchForFreelancersForm.getRawValue();
- } if (this.searchForManagersForm.valid) {
-  const formValue = this.searchForManagersForm.getRawValue();
- } else {
-  return
- }
-}
+  // Submit Function
+  onSubmit() {
+    if (this.searchForm.invalid) return;
 
- switch() {
-  this.isContractorViewEnabled = !this.isContractorViewEnabled
- }
+    if (this.searchForm.valid) {
+      const formValue = this.searchForm.controls.tag.setValue(this.tagID);
+      this.router.navigate([`/results/${this.tagID}`]);
+    }
+     else {
+      return;
+    }
+  }
+
+  switch() {
+    this.isContractorViewEnabled = !this.isContractorViewEnabled;
+  }
 }

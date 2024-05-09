@@ -4,7 +4,12 @@ import {
   provideClientHydration,
 } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withFetch,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
@@ -46,7 +51,10 @@ import { FooterComponent } from './features/footer/footer.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [provideClientHydration()],
+  providers: [
+    provideClientHydration(),
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

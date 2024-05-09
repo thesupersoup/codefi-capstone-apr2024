@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './results-page.component.scss'
 })
 export class ResultsPageComponent {
-  isAuthorized = false;
+  isAuthorized = true;
   isContractor = true;
   isFreelancer = false;
 
