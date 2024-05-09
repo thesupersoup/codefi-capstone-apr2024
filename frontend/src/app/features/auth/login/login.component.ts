@@ -29,7 +29,6 @@ export class LoginComponent {
         .loginUser(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe(
           (response) => {
-            console.log(response);
             this.router.navigate(['/']);
           },
           (error) => {
