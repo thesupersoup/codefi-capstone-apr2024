@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TagService } from '../../../shared/services/tag.service';
+import { Tag } from '../../../shared/models/tag.model';
 
 @Component({
   selector: 'app-general-home',
@@ -15,13 +16,10 @@ import { TagService } from '../../../shared/services/tag.service';
 })
 export class GeneralHomeComponent {
   isContractorViewEnabled = true;
-  tags: any[];
+  tags: Tag[];
+  tagID: string;
 
-  searchForFreelancersForm = new FormGroup({
-    tag: new FormControl('', [Validators.required]),
-  });
-
-  searchForManagersForm = new FormGroup({
+  searchForm = new FormGroup({
     tag: new FormControl('', [Validators.required]),
   });
 
@@ -31,42 +29,28 @@ export class GeneralHomeComponent {
     private tagService: TagService
   ) {}
 
-  autoFreelancerSearch() {
-    const searchFreeResults = this.tagService
-      .getTagsByName(this.searchForFreelancersForm.value.tag)
+  autoSearch() {
+    const searchResults = this.tagService
+      .getTagsByName(this.searchForm.value.tag)
       .subscribe((res) => {
-        console.log(res);
         this.tags = res;
       });
-
-    console.log(this.tags);
-    // console.log(searchFreeResults);
-    // return searchFreeResults;
   }
 
-  autoContractorSearch() {
-    const searchContResults = this.tagService
-      .getTagsByName(this.searchForManagersForm.value.tag)
-      .subscribe((res) => {
-        console.log(res);
-        this.tags = res;
-      });
+  setValue(id) {
+    this.tagID = id
+    return this.tagID
   }
 
   // Submit Function
   onSubmit() {
-    if (
-      this.searchForFreelancersForm.invalid &&
-      this.searchForManagersForm.invalid
-    )
-      return;
+    if (this.searchForm.invalid) return;
 
-    if (this.searchForFreelancersForm.valid) {
-      const formValue = this.searchForFreelancersForm.getRawValue();
+    if (this.searchForm.valid) {
+      const formValue = this.searchForm.controls.tag.setValue(this.tagID);
+      this.router.navigate([`/results/${this.tagID}`]);
     }
-    if (this.searchForManagersForm.valid) {
-      const formValue = this.searchForManagersForm.getRawValue();
-    } else {
+     else {
       return;
     }
   }

@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TagService } from '../../../shared/services/tag.service';
+import { Tag } from '../../../shared/models/tag.model';
 
 @Component({
   selector: 'app-freelancer-home',
@@ -14,8 +15,10 @@ import { TagService } from '../../../shared/services/tag.service';
   styleUrl: './freelancer-home.component.scss',
 })
 export class FreelancerHomeComponent {
-  tags: any[];
-  searchForManagersForm = new FormGroup({
+  tags: Tag[];
+  tagID: string;
+
+  searchForm = new FormGroup({
     tag: new FormControl('', [Validators.required]),
   });
 
@@ -25,21 +28,28 @@ export class FreelancerHomeComponent {
     private tagService: TagService
   ) {}
 
-  autoContractorSearch() {
-    const searchContResults = this.tagService
-      .getTagsByName(this.searchForManagersForm.value.tag)
+  autoSearch() {
+    const searchResults = this.tagService
+      .getTagsByName(this.searchForm.value.tag)
       .subscribe((res) => {
-        console.log(res);
         this.tags = res;
       });
   }
 
+  setValue(id) {
+    this.tagID = id
+    return this.tagID
+  }
+
   // Submit Function
   onSubmit() {
-    if (this.searchForManagersForm.invalid) return;
+    console.log("1", this.tagID)
+    if (this.searchForm.invalid) return;
 
-    if (this.searchForManagersForm.valid) {
-      const formValue = this.searchForManagersForm.getRawValue();
+    if (this.searchForm.valid) {
+      const formValue = this.searchForm.controls.tag.setValue(this.tagID);
+      console.log(this.tagID)
+      this.router.navigate([`/results/${this.tagID}`])
     } else {
       return;
     }

@@ -32,7 +32,7 @@ const routes: Routes = [
     component: VerifyComponent
   },
   {
-    path: "results",
+    path: "results/:id",
     component: ResultsPageComponent,
   },
 ];
