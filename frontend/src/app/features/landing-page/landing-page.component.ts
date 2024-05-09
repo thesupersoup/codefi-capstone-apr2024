@@ -13,9 +13,9 @@ import { Router } from '@angular/router';
   styleUrl: './landing-page.component.scss',
 })
 export class LandingPageComponent {
-  isAuthorized = true;
+  isAuthorized = false;
   isContractor = false;
-  isFreelancer = true;
+  isFreelancer = false;
 
   constructor() {}
 }

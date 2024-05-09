@@ -1,23 +1,23 @@
 <section id="body2" class="h-[calc(100vh-64px)]">
   <div class="flex justify-center items-center w-dvw pt-64">
     <form
-      [formGroup]="searchForManagersForm"
-      (input)="autoContractorSearch()"
-      action=""
-      class="flex flex-col justify-center items-center w-full"
-    >
+      [formGroup]="searchForm"
+      (input)="autoSearch()"
+      class="flex flex-col justify-center items-center w-full">
       <label for="" class="text-4xl mb-8">Search For Jobs</label>
       <input
+        #tagInput
+        formControlName="tag"
         class="border border-black rounded w-1/2 h-12 text-2xl pl-2"
         type="text"
         placeholder="What Are You Looking For?"
       />
-      <div *ngIf="this.tags">
-        <span *ngFor="let tag of tags">
-          <option value="">{{ this.tag.name }}</option>
-        </span>
-      </div>
-      <button type="submit" class="border border-slate-200 rounded m-3 h-7.5">
+      <button *ngFor="let tag of tags" value="{{this.tag._id}}" class="bg-white border border-black w-1/2 h-10">
+        <div (click)="tagInput.value = this.tag.name; setValue(this.tag._id)">
+          {{ this.tag.name }}
+        </div>
+      </button>
+      <button type="submit" class="border border-slate-200 rounded m-3 h-7.5" (click)="onSubmit()">
         <div
           class="bg-slate-100 hover:bg-slate-200 text-red-800 font-semibold border-2 px-2 border-red-600 rounded"
         >

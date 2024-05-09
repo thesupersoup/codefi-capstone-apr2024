@@ -67,16 +67,11 @@ export class TagService {
     });
   }
 
-  getAllUsersFromTagById(id: string) {
+  getAllUsersFromTagById(id: string): Observable<any> {
     return this.http
       .get<{ success: boolean; data: { users: any[] } }>(
         `${environment.API_URL}/tags/users/${id}`,
         { withCredentials: true }
       )
-      .pipe(
-        map((res) => {
-          res.data.users;
-        })
-      );
   }
 }
