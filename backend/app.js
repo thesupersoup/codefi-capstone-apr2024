@@ -2,9 +2,13 @@
 require("dotenv").config();
 require("express-async-errors");
 
-const express = require("express");
-const app = express();
-const connectToMongo = require("./lib/db/mongoose-connect");
+
+const express = require('express')
+const app = express()
+const connectToMongo = require('./lib/db/mongoose-connect')
+const fileUpload = require('express-fileupload')
+const cloudinary = require('cloudinary').v2
+
 
 // SECURITY
 const cookieParser = require("cookie-parser");
@@ -13,18 +17,27 @@ const cors = require("cors");
 const xss = require("xss-clean");
 const rateLimiter = require("express-rate-limit");
 
+// Cloudinary Config
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+})
+
 // * MIDDLEWARES
-app.set("trust proxy", 1); // Trust First Proxy
-app.use(cookieParser(process.env.CP_SECRET)); // Cookie Parser
-app.use(express.urlencoded({ extended: true })); // URL Encoded
-// app.use(
-//   rateLimiter({
-//     windowMs: 15 * 60 * 1000, // 15 Minutes
-//     max: 100, // limit each IP to 100 requests per window (15 mins)
-//   })
-// ) // Rate Limited (Prevents Brute Force Attacks)
-app.use(express.json()); // Body Parser
-app.use(helmet()); // Header Security
+
+app.set('trust proxy', 1) // Trust First Proxy
+app.use(cookieParser(process.env.CP_SECRET)) // Cookie Parser
+app.use(express.urlencoded({ extended: true })) // URL Encoded
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000, // 15 Minutes
+    max: 100, // limit each IP to 100 requests per window (15 mins)
+  })
+) // Rate Limited (Prevents Brute Force Attacks)
+app.use(express.json()) // Body Parser
+app.use(fileUpload({ useTempFiles: true })) // Temporary File Upload for Cloudinary
+app.use(helmet()) // Header Security
 app.use(
   cors({
     origin: "http://localhost:4200",
