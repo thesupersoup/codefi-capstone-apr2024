@@ -1,15 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Router } from 'express';
-import { AuthService } from '../../shared/services/auth.service';
-import { map } from 'rxjs';
-import { User } from '../../shared/models/user.model';
+
+import { UserService } from '../../shared/services/user.service';
 import { TagService } from '../../shared/services/tag.service';
 
 @Component({
@@ -18,26 +9,30 @@ import { TagService } from '../../shared/services/tag.service';
   styleUrls: ['./user-profile-page.component.scss'],
 })
 export class UserProfilePageComponent implements OnInit {
-  user?: User;
+  user?: any;
 
   constructor(
-    private router: Router,
-    private authService: AuthService,
+    private userService: UserService,
     private tagService: TagService
   ) {}
   ngOnInit() {
-    return this.authService.me().pipe(
-      map((res) => {
-        const user = res.data.user;
-        // return this.tagService.getTagById;
-      })
-    );
+    this.userService.getUserData().subscribe((res) => {
+      this.user = res.data;
+      if (!this.user.profilePicture) {
+        this.user.profilePicture =
+          'https://res.cloudinary.com/dp38tcyrv/image/upload/v1715038251/profile_pictures/tmp-1-1715038249581_pyeru2.webp';
+      }
+    });
+  }
+  deleteTagFromUser(_id) {
+    this.tagService.removeTagFromUser(_id).subscribe((res) => {});
   }
 }
 
 //TODO: add password change/reset logic
-//TODO: add/delete tag function
-//TODO: Add logic from tag service
+
+//TODO: add tag function
 
 //TODO: check svg for html edit tag buttons
-//user.tags.length<5
+
+//TODO: disable add tag button at 5 tags
