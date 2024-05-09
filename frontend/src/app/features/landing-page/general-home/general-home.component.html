@@ -102,15 +102,17 @@
           />
 
           <!-- TSK: Trace... don't know what this is -->
-          <!-- <button
-        *ngFor="let tag of tags"
-        value="{{ this.tag._id }}"
-        class="bg-white border border-black w-1/2 h-10"
-      >
-        <div (click)="tagInput.value = this.tag.name; setValue(this.tag._id)">
-          {{ this.tag.name }}
-        </div>
-      </button> -->
+          <button
+            *ngFor="let tag of tags"
+            value="{{ this.tag._id }}"
+            class="bg-white border border-black w-1/2 h-10"
+          >
+            <div
+              (click)="tagInput.value = this.tag.name; setValue(this.tag._id)"
+            >
+              {{ this.tag.name }}
+            </div>
+          </button>
 
           <!-- Search Button -->
           <button
