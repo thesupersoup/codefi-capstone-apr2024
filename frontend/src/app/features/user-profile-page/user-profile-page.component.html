@@ -1,52 +1,81 @@
 <section class="body h-dvh flex flex-col justify-center items-center">
   <form
-    [formGroup]="userProfileForm1"
     class="border-double border-4 border-black m-4 bg-gradient-to-b from-slate-500 to-slate-100 w-1/2"
   >
     <!-- pull in bg color from profile img into bg -->
     <div>
       <img
-        formControlName="img"
         src="assets\img\360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
         alt="Profile Picture"
         class="rounded-full w-24 p-2"
       />
     </div>
     <div class="flex flex-col items-center w-3/4 pl-2 font-semibold">
-      <div formControlName="name">Name:</div>
-      <div formControlName="email">Email:</div>
-      <div formControlName="phone">Phone:</div>
+      <div>First Name:{{ user.firstName }}</div>
+      <div>Middle Initial: {{ user.middleInitial }}</div>
+      <div>Last Name: {{ user.lastName }}</div>
+      <div>Email:{{ user.email }}</div>
+      <div>Phone: {{ user.phoneNumber }}</div>
     </div>
     <!-- add click function for img edit -->
-    <div class="pl-2 m-2 font-semibold" formControlName="role">Role:</div>
+    <div class="pl-2 m-2 font-semibold">Role: {{ user.role }}</div>
   </form>
 
   <form
-    [formGroup]="userProfileForm2"
     class="border-double border-4 border-black m-4 bg-gradient-to-b from-slate-500 to-slate-100 w-1/2 font-semibold p-4"
   >
-    <!-- edit button on each tag with icon -->
+    <!-- delete/add/ button on each tag with icon -->
     <div class="flex justify-between items-center">
-      <p formControlName="tag1">Tag 1:</p>
-      <p>delete</p>
+      <p>{{ user.tags }}</p>
+      <button
+        class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
+      >
+        Delete
+      </button>
     </div>
     <div class="flex justify-between items-center">
-      <p formControlName="tag2">Tag 2:</p>
-      <p>delete</p>
+      <p>{{ user.tags }}</p>
+      <button
+        class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
+      >
+        Delete
+      </button>
     </div>
     <div class="flex justify-between items-center">
-      <p formControlName="tag3">Tag 3:</p>
-      <p>delete</p>
+      <p>{{ user.tags }}</p>
+      <button
+        class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
+      >
+        Delete
+      </button>
     </div>
     <div class="flex justify-between items-center">
-      <p formControlName="tag4">Tag 4:</p>
-      <p>delete</p>
+      <p>{{ user.tags }}</p>
+      <button
+        class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
+      >
+        Delete
+      </button>
     </div>
     <div class="flex justify-between items-center">
-      <p formControlName="tag5">Tag 5:</p>
-      <p>delete</p>
+      <p>{{ user.tags }}</p>
+      <button
+        class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
+      >
+        Delete
+      </button>
     </div>
-
-    <!-- CARD 2 SHOW TAGS / RESET PASSWORD BTN -->
+    <div>
+      <button
+        class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
+      >
+        Add Tag
+      </button>
+      <button
+        class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
+      >
+        Change Password
+      </button>
+    </div>
   </form>
 </section>

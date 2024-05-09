@@ -6,33 +6,38 @@ import {
   Validators,
 } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from 'express';
+import { AuthService } from '../../shared/services/auth.service';
+import { map } from 'rxjs';
+import { User } from '../../shared/models/user.model';
+import { TagService } from '../../shared/services/tag.service';
 
 @Component({
   selector: 'app-user-profile-page',
   templateUrl: './user-profile-page.component.html',
   styleUrls: ['./user-profile-page.component.scss'],
 })
-// export class UserProfilePageComponent {
-  // CREATE PROFILE FORM 1
-  // userProfileForm1 = new FormGroup({
-  //   img: new FormControl(''),
-  //   name: new FormControl('', [Validators.required]),
-  //   email: new FormControl('', [Validators.required, Validators.email]),
-  //   phone: new FormControl('', [Validators.required]),
-  //   role: new FormControl('', [Validators.required]),
-  // });
+export class UserProfilePageComponent implements OnInit {
+  user?: User;
 
-  // CREATE PROFILE FORM 2
-//   userProfileForm2 = new FormGroup({
-//     tag1: new FormControl(''),
-//     tag2: new FormControl(''),
-//     tag3: new FormControl(''),
-//     tag4: new FormControl(''),
-//     tag5: new FormControl(''),
-//   });
-// }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private tagService: TagService
+  ) {}
+  ngOnInit() {
+    return this.authService.me().pipe(
+      map((res) => {
+        const user = res.data.user;
+        // return this.tagService.getTagById;
+      })
+    );
+  }
+}
 
-//TODO: add auto gen name/email/phone/role/profile pic pull userID from backend
 //TODO: add password change/reset logic
-//TODO: add/edit tag function
+//TODO: add/delete tag function
+//TODO: Add logic from tag service
+
 //TODO: check svg for html edit tag buttons
+//user.tags.length<5
