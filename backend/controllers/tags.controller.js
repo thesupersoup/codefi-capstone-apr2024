@@ -198,7 +198,14 @@ const getAllUsersFromTagById = async (req, res) => {
       middleInitial: user.middleInitial,
       email: user.email,
       role: user.role,
-      tags: user.tags,
+      tags: [],
+    }
+    for (let tag of user.tags) {
+      const foundTag = await Tag.findById(tag)
+      newUser.tags.push({
+        name: foundTag.name,
+        id: foundTag._id,
+      })
     }
     users.push(newUser)
   }
