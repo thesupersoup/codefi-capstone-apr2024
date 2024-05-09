@@ -29,12 +29,12 @@ cloudinary.config({
 app.set('trust proxy', 1) // Trust First Proxy
 app.use(cookieParser(process.env.CP_SECRET)) // Cookie Parser
 app.use(express.urlencoded({ extended: true })) // URL Encoded
-app.use(
-  rateLimiter({
-    windowMs: 15 * 60 * 1000, // 15 Minutes
-    max: 100, // limit each IP to 100 requests per window (15 mins)
-  })
-) // Rate Limited (Prevents Brute Force Attacks)
+// app.use(
+//   rateLimiter({
+//     windowMs: 15 * 60 * 1000, // 15 Minutes
+//     max: 100, // limit each IP to 100 requests per window (15 mins)
+//   })
+// ) // Rate Limited (Prevents Brute Force Attacks)
 app.use(express.json()) // Body Parser
 app.use(fileUpload({ useTempFiles: true })) // Temporary File Upload for Cloudinary
 app.use(helmet()) // Header Security

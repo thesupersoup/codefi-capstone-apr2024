@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,16 +7,17 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TagService } from '../../../shared/services/tag.service';
-import { Tag } from '../../../shared/models/tag.model';
+import { TagViewModel } from '../../../shared/models/tag.model';
+import { ViewService } from '../../../shared/services/view.service';
 
 @Component({
   selector: 'app-general-home',
   templateUrl: './general-home.component.html',
   styleUrl: './general-home.component.scss',
 })
-export class GeneralHomeComponent {
-  isContractorViewEnabled = true;
-  tags: Tag[];
+export class GeneralHomeComponent implements OnInit{
+  currentView?: boolean;
+  tags: TagViewModel[];
   tagID: string;
 
   searchForm = new FormGroup({
@@ -26,8 +27,14 @@ export class GeneralHomeComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private tagService: TagService
+    private tagService: TagService,
+    private viewService: ViewService
   ) {}
+
+  ngOnInit(): void {
+      this.currentView = this.viewService.freelancerView
+
+  }
 
   autoSearch() {
     const searchResults = this.tagService
@@ -56,6 +63,6 @@ export class GeneralHomeComponent {
   }
 
   switch() {
-    this.isContractorViewEnabled = !this.isContractorViewEnabled;
+    this.currentView = this.viewService.changeView()
   }
 }

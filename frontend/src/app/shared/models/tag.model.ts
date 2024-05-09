@@ -1,4 +1,4 @@
-export class Tag {
+export class TagViewModel {
   _id?: string;
   name?: string;
 }

@@ -1,7 +1,7 @@
 <section
-  [ngClass]="{'body1': isContractorViewEnabled, 'body2': !isContractorViewEnabled}"
+  [ngClass]="{'body1': !currentView, 'body2': currentView}"
   class="h-[calc(100vh-64px)]">
-  <div class="py-8 flex flex-col justify-end items-end" *ngIf="isContractorViewEnabled">
+  <div class="py-8 flex flex-col justify-end items-end" *ngIf="!currentView">
     <label for="" class="flex flex-end mr-12">
       Looking for Work?
     </label>
@@ -14,7 +14,7 @@
       </div>
     </button>
   </div>
-  <div class="py-8 flex flex-col justify-end items-end" *ngIf="!isContractorViewEnabled">
+  <div class="py-8 flex flex-col justify-end items-end" *ngIf="currentView">
     <label for="" class="flex flex-end mr-8">Looking for Freelancers?</label>
     <button
       class="border border-slate-200 rounded mx-3 h-7.5"
@@ -30,10 +30,10 @@
       [formGroup]="searchForm"
       (input)="autoSearch()"
       class="flex flex-col justify-center items-center w-full">
-      <label for="" class="text-4xl mb-8 text-slate-100" *ngIf="isContractorViewEnabled">
+      <label for="" class="text-4xl mb-8 text-slate-100" *ngIf="!currentView">
         Search For Freelancers
       </label>
-      <label for="" class="text-4xl mb-8" *ngIf="!isContractorViewEnabled">
+      <label for="" class="text-4xl mb-8" *ngIf="currentView">
         Search For Jobs
       </label>
       <input

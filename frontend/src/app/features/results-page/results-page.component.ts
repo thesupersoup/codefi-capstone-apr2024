@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './results-page.component.scss'
 })
 export class ResultsPageComponent {
-  isAuthorized = true;
-  isContractor = true;
+  isAuthorized = false;
+  isContractor = false;
   isFreelancer = false;
 
   // Need Logic to Switch Views

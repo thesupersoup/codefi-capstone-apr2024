@@ -4,11 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { Tag } from '../models/tag.model';
+import { TagViewModel } from '../models/tag.model';
 
 @Injectable({ providedIn: 'root' })
 export class TagService {
-  private tagSub = new BehaviorSubject<Tag | undefined | null>(null);
+  private tagSub = new BehaviorSubject<TagViewModel | undefined | null>(null);
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -16,7 +16,7 @@ export class TagService {
     return this.tagSub.asObservable();
   }
 
-  createTag(tag: Tag) {
+  createTag(tag: TagViewModel) {
     return this.http.post(`${environment.API_URL}/tags`, tag, {
       withCredentials: true,
     });
@@ -24,7 +24,7 @@ export class TagService {
 
   getTagsByName(name: string): Observable<any> {
     return this.http
-      .get<{ success: boolean; data: { tags: Tag[] } }>(
+      .get<{ success: boolean; data: { tags: TagViewModel[] } }>(
         `${environment.API_URL}/tags?name=${name}`
       )
       .pipe(

@@ -3,6 +3,7 @@ import { TagService } from '../../../shared/services/tag.service';
 import { ActivatedRoute, Route } from '@angular/router';
 import { first } from 'rxjs';
 import { User } from '../../../shared/models/user.model';
+import { ViewService } from '../../../shared/services/view.service';
 
 @Component({
   selector: 'app-general',
@@ -10,7 +11,7 @@ import { User } from '../../../shared/models/user.model';
   styleUrl: './general.component.scss'
 })
 export class GeneralComponent implements OnInit {
-  isContractorView = true;
+  currentView?: boolean;
   id?: string;
   results?: any[];
   user?: User
@@ -19,10 +20,13 @@ export class GeneralComponent implements OnInit {
 
 constructor (
   private tagService: TagService,
-  private route: ActivatedRoute
+  private route: ActivatedRoute,
+  private viewService: ViewService
 ) {}
 
 ngOnInit(): void {
+    this.currentView = this.viewService.freelancerView
+
     this.id = this.route.snapshot.params['id']
     console.log(this.id)
 
@@ -34,6 +38,6 @@ ngOnInit(): void {
 
 
   switch() {
-   this.isContractorView = !this.isContractorView
+   this.currentView = this.viewService.changeView()
   }
 }
