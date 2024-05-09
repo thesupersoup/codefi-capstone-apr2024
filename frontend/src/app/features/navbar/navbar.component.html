@@ -1,5 +1,5 @@
 <div class="bg-zinc-700 h-16 flex justify-end items-center p-2">
-<!-- These two are for ease of access. To Be Deleted -->
+  <!-- These two are for ease of access. To Be Deleted -->
   <div>
     <button
       class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
@@ -16,12 +16,18 @@
     >
       Results
     </button>
+    <button
+      class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
+      routerLink="/userprofile"
+      routerLinkActive="active"
+    >
+      Profile
+    </button>
   </div>
 
   <button
     class="border border-slate-200 rounded m-1 h-7.5"
     *ngIf="!isAuthenticated"
-
     routerLink="/register"
     routerLinkActive="active"
   >
@@ -48,9 +54,7 @@
     *ngIf="isAuthenticated"
     routerLink="/login"
     routerLinkActive="active"
-
     (click)="logout()"
-
   >
     <div
       class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
