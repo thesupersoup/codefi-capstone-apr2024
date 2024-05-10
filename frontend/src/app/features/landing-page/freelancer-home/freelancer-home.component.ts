@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TagService } from '../../../shared/services/tag.service';
-import { Tag } from '../../../shared/models/tag.model';
+import { TagViewModel } from '../../../shared/models/tag.model';
 
 @Component({
   selector: 'app-freelancer-home',
@@ -15,7 +15,7 @@ import { Tag } from '../../../shared/models/tag.model';
   styleUrl: './freelancer-home.component.scss',
 })
 export class FreelancerHomeComponent {
-  tags: Tag[];
+  tags: TagViewModel[];
   tagID: string;
 
   searchForm = new FormGroup({

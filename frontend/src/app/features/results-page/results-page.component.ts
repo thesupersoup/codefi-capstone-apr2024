@@ -6,13 +6,13 @@ import { AuthService } from '../../shared/services/auth.service';
   templateUrl: './results-page.component.html',
   styleUrl: './results-page.component.scss',
 })
+
 export class ResultsPageComponent implements OnInit {
   user?: any;
   isAuthorized: boolean;
   isContractor: boolean;
   isFreelancer: boolean;
 
-  // Need Logic to Switch Views
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
