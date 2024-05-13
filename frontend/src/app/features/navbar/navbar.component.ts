@@ -12,6 +12,10 @@ export class NavbarComponent {
   isAuthenticated = false;
   isFreelancer = false;
   isContractor = false;
+  firstName: string = 'to ';
+  lastName: string = 'Local Lancer';
+  profilePic: string =
+    'https://res.cloudinary.com/dp38tcyrv/image/upload/v1715641528/profile_pictures/local_lancer_logo_vulb7x.png';
 
   authSubscription: Subscription;
 
@@ -23,6 +27,9 @@ export class NavbarComponent {
         this.authSubscription = this.authService.me().subscribe(
           (res) => {
             const user = res.data;
+            this.firstName = user.firstName;
+            this.lastName = user.lastName;
+            this.profilePic = user.profilePic;
             this.isAuthenticated = true;
 
             if (user.role === 'FREELANCER') {
@@ -44,6 +51,7 @@ export class NavbarComponent {
     this.isAuthenticated = false;
     this.isFreelancer = false;
     this.isContractor = false;
+    location.reload();
     this.authService.logoutUser().subscribe((res) => {
       this.router.navigate(['/']);
     });
