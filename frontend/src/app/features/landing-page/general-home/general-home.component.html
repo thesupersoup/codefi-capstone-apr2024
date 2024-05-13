@@ -38,7 +38,7 @@
         >
           Do you have
           {{
-            isContractorViewEnabled ? "some skills to share" : "a role to fill"
+            currentView ? "some skills to share" : "a role to fill"
           }}?
           <button
             (click)="switch()"
@@ -47,7 +47,7 @@
           >
             <span class="absolute inset-0" aria-hidden="true"></span
             >{{
-              isContractorViewEnabled
+              currentView
                 ? "Switch to freelancer view"
                 : "Switch to employer view"
             }}
@@ -63,12 +63,12 @@
         >
           Search for
           <span class="text-red-600">{{
-            isContractorViewEnabled ? "freelancers" : "opportunities"
+            currentView ? "freelancers" : "opportunities"
           }}</span>
         </h1>
         <p class="mt-6 text-lg leading-8 text-slate-600">
           {{
-            isContractorViewEnabled
+            currentView
               ? "Find the right freelancer for your project. Browse their profiles and reviews, then hire your favorite."
               : "Find the right job for your skills. Browse through the job listings and apply for the ones that interest you."
           }}
@@ -82,7 +82,7 @@
         >
           <!-- Search Label -->
           <label class="sr-only" for="tag">{{
-            isContractorViewEnabled
+            currentView
               ? "What type of freelancer are you looking for?"
               : "What type of opportunity are you looking for?"
           }}</label>
@@ -94,7 +94,7 @@
             id="tag"
             type="text"
             [placeholder]="
-              isContractorViewEnabled
+              currentView
                 ? 'What type of freelancer are you looking for?'
                 : 'What type of job are you looking for?'
             "
