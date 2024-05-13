@@ -15,7 +15,7 @@ export class NavbarComponent {
   firstName: string = 'to ';
   lastName: string = 'Local Lancer';
   profilePic: string =
-    'https://res.cloudinary.com/dp38tcyrv/image/upload/v1715641528/profile_pictures/local_lancer_logo_vulb7x.png';
+    'https://res.cloudinary.com/dp38tcyrv/image/upload/v1715639308/profile_pictures/icon_xibn9y.jpg';
 
   authSubscription: Subscription;
 

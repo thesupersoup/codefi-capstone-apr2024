@@ -43,6 +43,7 @@
       >
 
       <a
+        *ngIf="isAuthenticated"
         routerLink="/profile"
         routerLinkActive="active"
         class="text-sm font-semibold leading-6 text-slate-100 hover:text-slate-200"

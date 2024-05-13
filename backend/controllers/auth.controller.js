@@ -8,7 +8,10 @@ const {
   unsuccessfulRes,
   unauthorizedRes,
 } = require('../lib/utils/res')
-const { sendVerificationEmail, sendEmail } = require('../lib/emails/nodemailer')
+const {
+  sendVerificationEmail,
+  sendResetPassswordEmail,
+} = require('../lib/emails/nodemailer')
 
 // * CONTROLLERS * //
 
