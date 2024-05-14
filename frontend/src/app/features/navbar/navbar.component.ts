@@ -12,8 +12,7 @@ export class NavbarComponent {
   isAuthenticated = false;
   isFreelancer = false;
   isContractor = false;
-  firstName: string = 'to ';
-  lastName: string = 'Local Lancer';
+  welcomeString: string = 'Welcome to Local Lancer';
   profilePic: string =
     'https://res.cloudinary.com/dp38tcyrv/image/upload/v1715639308/profile_pictures/icon_xibn9y.jpg';
 
@@ -27,8 +26,7 @@ export class NavbarComponent {
         this.authSubscription = this.authService.me().subscribe(
           (res) => {
             const user = res.data;
-            this.firstName = user.firstName;
-            this.lastName = user.lastName;
+            this.welcomeString = `Welcome, ${user.firstName} ${user.lastName}`;
             this.profilePic = user.profilePic;
             this.isAuthenticated = true;
 
