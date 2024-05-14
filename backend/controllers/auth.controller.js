@@ -11,6 +11,7 @@ const {
 const {
   sendVerificationEmail,
   sendResetPasswordEmail,
+
 } = require("../lib/emails/nodemailer");
 
 // * CONTROLLERS * //
@@ -291,7 +292,13 @@ const me = async (req, res) => {
   // only return the users { role, name, and email }
   return successfulRes({
     res,
-    data: { name: user.name, email: user.email, role: user.role },
+    data: {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      profilePic: user.profilePic,
+      email: user.email,
+      role: user.role,
+    },
   });
 };
 
