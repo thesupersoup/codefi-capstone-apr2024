@@ -65,4 +65,12 @@ export class AuthService {
       options
     );
   }
+
+  resetPassword(email): Observable<any> {
+    const credentials = { email };
+    return this.http.post<any>(
+      `${this.apiUrl}auth/forgot-password`,
+      credentials
+    );
+  }
 }

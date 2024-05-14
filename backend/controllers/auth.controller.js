@@ -10,7 +10,7 @@ const {
 } = require("../lib/utils/res");
 const {
   sendVerificationEmail,
-  sendEmail,
+  sendResetPasswordEmail,
 } = require("../lib/emails/nodemailer");
 
 // * CONTROLLERS * //
@@ -212,7 +212,7 @@ const forgotPassword = async (req, res) => {
     const passwordToken = crypto.randomBytes(70).toString("hex");
 
     // Send email
-    await sendResetPassswordEmail({
+    await sendResetPasswordEmail({
       name: user.name,
       email: user.email,
       token: passwordToken,
