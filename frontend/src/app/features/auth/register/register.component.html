@@ -1,112 +1,167 @@
 <main
-  class="bg-gradient-to-b from-slate-500 to-slate-100 relative flex flex-col items-center h-[calc(100vh-64px)] pt-12"
+  class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 h-[calc(100vh-98px)]"
 >
-  <div class="w-1/2">
-    <form
-      [formGroup]="registerForm"
-      (ngSubmit)="onSubmit()"
-      class="flex flex-col gap-4"
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img
+      class="mx-auto h-20 w-20 hover:animate-spin"
+      src="../../../../assets/images/local_lancer_logo.png"
+      alt="Local Lancer"
+    />
+    <h2
+      class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-slate-900"
     >
-      <h1 class="font-semibold text-2xl text-center">User Details</h1>
-      <div class="flex flex-row justify-between w-full">
-        <div class="flex flex-col w-3/4">
-          <label for="firstName" class="text-md font-semibold"
-            >First Name</label
-          >
+      Register your account
+    </h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form class="space-y-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- First Name -->
+      <div>
+        <label
+          for="firstName"
+          class="block text-sm font-medium leading-6 text-slate-900"
+          >First Name</label
+        >
+        <div class="mt-2">
           <input
-            type="text"
-            class="input flex border rounded border-slate-800 w-full pl-2"
-            formControlName="firstName"
             id="firstName"
-          />
-        </div>
-        <div class="flex flex-col ml-3">
-          <label for="middleInitial" class="text-md font-semibold"
-            >Middle Initial</label
-          >
-          <input
+            name="firstName"
             type="text"
-            class="input flex border rounded border-slate-800 w-full pl-2"
-            formControlName="middleInitial"
-            id="middleInitial"
+            autocomplete="given-name"
+            required
+            formControlName="firstName"
+            class="block px-2 w-full rounded-md border-0 bg-slate-900/5 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-900/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
-      <div class="flex flex-col">
-        <label for="lastName" class="text-md font-semibold">Last Name</label>
-        <input
-          type="text"
-          class="input flex border rounded border-slate-800 pl-2"
-          formControlName="lastName"
-          id="lastName"
-        />
+
+      <!-- Last Name -->
+      <div>
+        <label
+          for="lastName"
+          class="block text-sm font-medium leading-6 text-slate-900"
+          >Last Name</label
+        >
+        <div class="mt-2">
+          <input
+            id="lastName"
+            name="lastName"
+            type="text"
+            autocomplete="family-name"
+            required
+            formControlName="lastName"
+            class="block px-2 w-full rounded-md border-0 bg-slate-900/5 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-900/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
+          />
+        </div>
       </div>
-      <div class="flex flex-col">
-        <label for="phoneNumber" class="text-md font-semibold"
+
+      <!-- Phone -->
+      <div>
+        <label
+          for="phoneNumber"
+          class="block text-sm font-medium leading-6 text-slate-900"
           >Phone Number</label
         >
-        <input
-          type="tel"
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          class="input flex border rounded border-slate-800 pl-2"
-          formControlName="phoneNumber"
-          id="phoneNumber"
-          placeholder="ex. 555-555-1234"
-        />
+        <div class="mt-2">
+          <input
+            id="phoneNumber"
+            name="phoneNumber"
+            type="tel"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            autocomplete="tel"
+            required
+            formControlName="phoneNumber"
+            class="block px-2 w-full rounded-md border-0 bg-slate-900/5 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-900/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
+          />
+        </div>
       </div>
 
-      <div class="bg-slate-100 border border-slate-800 rounded flex flex-col">
-        <label class="text-md font-semibold pl-2 pt-2">I Am A:</label>
-        <div class="flex flex-row pl-2">
-          <input
-            type="radio"
-            id="freelancer"
+      <!-- Role -->
+      <div>
+        <label
+          for="role"
+          class="block text-sm font-medium leading-6 text-slate-900"
+          >I am a:</label
+        >
+        <div class="mt-2">
+          <select
+            id="role"
             name="role"
-            value="FREELANCER"
+            required
             formControlName="role"
-          />
-          <label for="role" class="pl-2">Freelancer Looking for Work</label>
+            class="block px-2 w-full rounded-md border-0 bg-slate-900/5 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-900/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
+          >
+            <option value="FREELANCER">Freelancer Looking for Work</option>
+            <option value="CONTRACTOR">
+              Project Owner Looking for Freelancers
+            </option>
+          </select>
         </div>
-        <hr class="border border-slate-300" />
-        <div class="flex flex-row pl-2 pb-1">
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label
+          for="email"
+          class="block text-sm font-medium leading-6 text-slate-900"
+          >Email address</label
+        >
+        <div class="mt-2">
           <input
-            type="radio"
-            id="Contractor"
-            name="role"
-            value="CONTRACTOR"
-            formControlName="role"
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            formControlName="email"
+            class="block px-2 w-full rounded-md border-0 bg-slate-900/5 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-900/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
           />
-          <label for="role" class="pl-2"
-            >Project Owner Looking for Freelancers</label
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <div class="flex items-center justify-between">
+          <label
+            for="password"
+            class="block text-sm font-medium leading-6 text-slate-900"
+            >Password</label
           >
         </div>
-      </div>
-      <div class="flex flex-col gap-1">
-        <label for="email" class="text-md font-semibold">Email</label>
-        <input
-          type="email"
-          class="input flex border rounded border-slate-800 pl-2"
-          formControlName="email"
-          id="email"
-        />
-      </div>
-      <div class="flex flex-col gap-1">
-        <label for="password" class="text-md font-semibold">Password</label>
-        <input
-          type="password"
-          class="input flex border rounded border-slate-800 pl-2"
-          formControlName="password"
-          id="password"
-        />
+
+        <div class="mt-2">
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            formControlName="password"
+            required
+            class="block px-2 w-full rounded-md border-0 bg-slate-900/5 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-900/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
+          />
+        </div>
       </div>
 
-      <button
-        type="submit"
-        [disabled]="!registerForm.valid"
-        class="rounded border-2 border-blue-500 bg-zinc-200 hover:bg-zinc-100 w-1/2"
-      >
-        Register
-      </button>
+      <!-- Submit -->
+      <div>
+        <button
+          [disabled]="!registerForm.valid"
+          type="submit"
+          class="flex w-full justify-center rounded-md bg-red-500 px-3 py-1.5 text-sm font-semibold leading-6 text-slate-100 shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+        >
+          Register
+        </button>
+      </div>
     </form>
+
+    <p class="mt-10 text-center text-sm text-gray-400">
+      Already registered?
+      <a
+        routerLink="/register"
+        class="font-semibold leading-6 text-red-400 hover:text-red-300"
+        >Log into your account!</a
+      >
+    </p>
   </div>
 </main>

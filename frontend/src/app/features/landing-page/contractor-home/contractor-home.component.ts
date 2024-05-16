@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TagService } from '../../../shared/services/tag.service';
-import { Tag } from '../../../shared/models/tag.model';
+import { TagViewModel } from '../../../shared/models/tag.model';
 
 @Component({
   selector: 'app-contractor-home',
@@ -10,7 +10,7 @@ import { Tag } from '../../../shared/models/tag.model';
   styleUrl: './contractor-home.component.scss'
 })
 export class ContractorHomeComponent {
-  tags: Tag[];
+  tags: TagViewModel[];
   tagID: string;
 
   searchForm = new FormGroup({
