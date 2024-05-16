@@ -5,28 +5,20 @@
 .block {
   position: relative;
 }
+.block:hover .img {
+  color: #001f3f;
+  background-color: #944646;
+  border: 2px;
+  transition: all 0.5s ease;
+}
 
 .input {
   opacity: 0;
   position: absolute;
-  top: 20px;
-  left: 5px;
+  width: 96px;
+  height: 61px;
 }
 
 .img {
   position: absolute;
-}
-
-.img:hover {
-  color: #001f3f;
-  background-color: #944646;
-  border: 2px;
-  transition: all 0.5s ease;
-}
-
-.input:hover {
-  color: #001f3f;
-  background-color: #944646;
-  border: 2px;
-  transition: all 0.5s ease;
 }

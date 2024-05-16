@@ -53,14 +53,13 @@
             clip-rule="evenodd"
           />
         </svg>
-        Delete
       </button>
     </div>
 
     <div>
       <button
         class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
-        (click)="showMe()"
+        (click)="showMe(); $event.preventDefault()"
       >
         Add Tag
       </button>
@@ -72,19 +71,17 @@
     </div>
   </form>
   <form
+    [hidden]="isDisplayed"
+    [formGroup]="addTagForm"
     class="border-double border-4 border-black m-4 bg-gradient-to-b from-slate-500 to-slate-100 w-1/2"
   >
     <p class="pl-2 m-2 font-semibold">Add a new tag here</p>
-    <input type="text" />
+    <input type="text" formControlName="name" />
     <button
       class="bg-slate-100 hover:bg-slate-200 text-red-700 font-semibold border-2 px-2 border-red-600 rounded"
-      type="submit"
+      (click)="this.createTagFromUser(); showMe(); $event.preventDefault()"
     >
       Submit
     </button>
   </form>
 </section>
-
-<!-- [formGroup]="addTagForm" - line 64
-[formControlName="text" ] - line 69
-[formControlName="submitButton"] - line 71 -->

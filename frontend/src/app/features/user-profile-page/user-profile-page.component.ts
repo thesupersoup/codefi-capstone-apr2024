@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserService } from '../../shared/services/user.service';
 import { TagService } from '../../shared/services/tag.service';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { TagViewModel } from '../../shared/models/tag.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../shared/models/user.model';
 
@@ -27,6 +23,8 @@ export class UserProfilePageComponent implements OnInit {
     profilePicture: '',
   };
   onFileSelected: any;
+  tags: TagViewModel[];
+  tagID: string;
 
   constructor(
     private userService: UserService,
@@ -66,8 +64,6 @@ export class UserProfilePageComponent implements OnInit {
 
         this.user.profilePicture = newImgUrl;
 
-        console.log(this.user.id);
-
         this.http
           .patch(
             'http://localhost:5000/api/v1/users/' + this.user.id,
@@ -76,22 +72,30 @@ export class UserProfilePageComponent implements OnInit {
             },
             { withCredentials: true }
           )
-          .subscribe((res2) => {
-            console.log('RES2', res2);
-          });
+          .subscribe((res2) => {});
       });
   }
   // ADD TAG FUCTION
-
+  createTagFromUser() {
+    const tagType = this.addTagForm.value;
+    this.tagService.createTag(tagType).subscribe((res) => {});
+  }
   // DELETE TAG
   deleteTagFromUser(_id) {
     this.tagService.removeTagFromUser(_id).subscribe((res) => {});
   }
   // CREATE ADD TAG FORM
-  // addTagForm = new FormGroup({
-  //   text: new FormControl('', [Validators.required]),
-  //   submitButton: new FormControl('', [Validators.required]),
-  // });
+  addTagForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+  });
+
+  autoSearch() {
+    const searchResults = this.tagService
+      .getTagsByName(this.addTagForm.value.name)
+      .subscribe((res) => {
+        this.tags = res;
+      });
+  }
 
   isDisplayed = true;
 
@@ -105,10 +109,9 @@ export class UserProfilePageComponent implements OnInit {
 }
 
 // MAIN TO DOS
+//TODO: add tag to local storage to show while hitting backend
+//TODO: pull in auto search into createtag
 //TODO: add password change/reset logic
-//TODO: add tag function (form builder throwing err)
-//TODO: build form
 
 // SECONDARY TO DOS
-//TODO: check svg for html edit tag buttons
 //TODO: disable add tag button at 5 tags
