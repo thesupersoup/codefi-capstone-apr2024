@@ -25,6 +25,7 @@ import { GeneralComponent } from './features/results-page/general/general.compon
 import { ContractorComponent } from './features/results-page/contractor/contractor.component';
 import { FreelancerComponent } from './features/results-page/freelancer/freelancer.component';
 import { FooterComponent } from './features/footer/footer.component';
+import { PasswordResetComponent } from './features/auth/password-reset/password-reset.component';
 import { ResultsFilterPipe } from './shared/pipes/resultspipe';
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ResultsFilterPipe } from './shared/pipes/resultspipe';
     ContractorComponent,
     FreelancerComponent,
     FooterComponent,
-    ResultsFilterPipe
+    PasswordResetComponent,
+    ResultsFilterPipe,
   ],
   imports: [
     BrowserModule,

@@ -12,33 +12,39 @@ import { FreelancerHomeComponent } from './features/landing-page/freelancer-home
 import { ContractorHomeComponent } from './features/landing-page/contractor-home/contractor-home.component';
 import { GeneralComponent } from './features/results-page/general/general.component';
 import { ContractorComponent } from './features/results-page/contractor/contractor.component';
+import { PasswordResetComponent } from './features/auth/password-reset/password-reset.component';
 
 const routes: Routes = [
   {
-    path: "",
-    pathMatch: "full",
-    component: LandingPageComponent
+    path: '',
+    pathMatch: 'full',
+    component: LandingPageComponent,
   },
   {
-    path: "login",
-    component: LoginComponent
+    path: 'login',
+    component: LoginComponent,
   },
   {
-    path: "register",
-    component: RegisterComponent
+    path: 'register',
+    component: RegisterComponent,
   },
   {
-    path: "verify",
-    component: VerifyComponent
+    path: 'verify',
+    component: VerifyComponent,
   },
   {
-    path: "results/:id",
+    path: 'results/:id',
     component: ResultsPageComponent,
+  },
+
+  {
+    path: 'passwordReset',
+    component: PasswordResetComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
