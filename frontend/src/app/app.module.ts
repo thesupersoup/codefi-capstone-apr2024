@@ -25,6 +25,7 @@ import { GeneralComponent } from './features/results-page/general/general.compon
 import { ContractorComponent } from './features/results-page/contractor/contractor.component';
 import { FreelancerComponent } from './features/results-page/freelancer/freelancer.component';
 import { FooterComponent } from './features/footer/footer.component';
+import { ResultsFilterPipe } from './shared/pipes/resultspipe';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { FooterComponent } from './features/footer/footer.component';
     ContractorComponent,
     FreelancerComponent,
     FooterComponent,
+    ResultsFilterPipe
   ],
   imports: [
     BrowserModule,

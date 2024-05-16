@@ -1,29 +1,138 @@
-<section id="body2" class="h-[calc(100vh-64px)]">
-  <div class="flex justify-center items-center w-dvw pt-64">
-    <form
-      [formGroup]="searchForm"
-      (input)="autoSearch()"
-      class="flex flex-col justify-center items-center w-full">
-      <label for="" class="text-4xl mb-8">Search For Jobs</label>
-      <input
-        #tagInput
-        formControlName="tag"
-        class="border border-black rounded w-1/2 h-12 text-2xl pl-2"
-        type="text"
-        placeholder="What Are You Looking For?"
-      />
-      <button *ngFor="let tag of tags" value="{{this.tag._id}}" class="bg-white border border-black w-1/2 h-10">
-        <div (click)="tagInput.value = this.tag.name; setValue(this.tag._id)">
-          {{ this.tag.name }}
-        </div>
-      </button>
-      <button type="submit" class="border border-slate-200 rounded m-3 h-7.5" (click)="onSubmit()">
-        <div
-          class="bg-slate-100 hover:bg-slate-200 text-red-800 font-semibold border-2 px-2 border-red-600 rounded"
+<main class="bg-white py-9">
+  <div class="relative isolate px-6 pt-14 lg:px-8">
+    <!-- Background Gradient -->
+    <div
+      class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+      aria-hidden="true"
+    >
+      <div
+        class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff8080] to-[#7cf6ff] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+        style="
+          clip-path: polygon(
+            74.1% 44.1%,
+            100% 61.6%,
+            97.5% 26.9%,
+            85.5% 0.1%,
+            80.7% 2%,
+            72.5% 32.5%,
+            60.2% 62.4%,
+            52.4% 68.1%,
+            47.5% 58.3%,
+            45.2% 34.5%,
+            27.5% 76.7%,
+            0.1% 64.9%,
+            17.9% 100%,
+            27.6% 76.8%,
+            76.1% 97.7%,
+            74.1% 44.1%
+          );
+        "
+      ></div>
+    </div>
+
+    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+
+      <!-- Hero Content -->
+      <div class="text-center">
+        <h1
+          class="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl"
         >
-          Search
-        </div>
-      </button>
-    </form>
+          Search for
+          <span class="text-red-600">opportunities
+          </span>
+        </h1>
+        <p class="mt-6 text-lg leading-8 text-slate-600">
+              Find the right job for your skills. Browse through the job listings and apply for the ones that interest you."
+        </p>
+
+        <!-- Search Form -->
+        <form
+          [formGroup]="searchForm"
+          (input)="autoSearch()"
+          class="flex items-center py-2 rounded-full md:border-2 md:shadow-sm mt-4 sm:mt-6"
+        >
+          <!-- Search Label -->
+          <label class="sr-only" for="tag">
+              What type of opportunity are you looking for?
+          </label>
+
+          <!-- Search Input -->
+          <input
+            #tagInput
+            formControlName="tag"
+            id="tag"
+            type="text"
+            placeholder="What job are you looking for?"
+            class="flex-grow pl-5 md:pl-8 bg-transparent outline-none border-none focus:ring-transparent text-sm md:text-lg lg:text-xl text-slate-600 placeholder-slate-400"
+          />
+
+          <!-- TSK: Trace... don't know what this is -->
+          <button
+            *ngFor="let tag of tags"
+            value="{{ this.tag._id }}"
+            class="bg-white border border-black w-1/2 h-10"
+          >
+            <div
+              (click)="tagInput.value = this.tag.name; setValue(this.tag._id)"
+            >
+              {{ this.tag.name }}
+            </div>
+          </button>
+
+          <!-- Search Button -->
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center h-12 w-12 bg-red-400 text-white rounded-full p-2 cursor-pointer mx-2 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-white"
+            (click)="onSubmit()"
+          >
+            <!-- Search SVG -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Background Gradient -->
+    <div
+      class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+      aria-hidden="true"
+    >
+      <div
+        class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff8080] to-[#7cf6ff] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+        style="
+          clip-path: polygon(
+            74.1% 44.1%,
+            100% 61.6%,
+            97.5% 26.9%,
+            85.5% 0.1%,
+            80.7% 2%,
+            72.5% 32.5%,
+            60.2% 62.4%,
+            52.4% 68.1%,
+            47.5% 58.3%,
+            45.2% 34.5%,
+            27.5% 76.7%,
+            0.1% 64.9%,
+            17.9% 100%,
+            27.6% 76.8%,
+            76.1% 97.7%,
+            74.1% 44.1%
+          );
+        "
+      ></div>
+    </div>
   </div>
-</section>
+</main>
