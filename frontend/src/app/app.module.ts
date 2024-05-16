@@ -27,6 +27,8 @@ import { FreelancerComponent } from './features/results-page/freelancer/freelanc
 import { FooterComponent } from './features/footer/footer.component';
 import { PasswordResetComponent } from './features/auth/password-reset/password-reset.component';
 import { ResultsFilterPipe } from './shared/pipes/resultspipe';
+import { SuccessMsgComponent } from './shared/components/success-msg/success-msg.component';
+import { ErrorMsgComponent } from './shared/components/error-msg/error-msg.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { ResultsFilterPipe } from './shared/pipes/resultspipe';
     FooterComponent,
     PasswordResetComponent,
     ResultsFilterPipe,
+    SuccessMsgComponent,
+    ErrorMsgComponent,
   ],
   imports: [
     BrowserModule,
