@@ -1,4 +1,4 @@
-<main class="bg-white h-[calc(100vh-98px)]">
+<main class="bg-white py-2">
   <div class="relative isolate px-6 pt-14 lg:px-8">
     <!-- Background Gradient -->
     <div
@@ -102,17 +102,17 @@
           />
 
           <!-- TSK: Trace... don't know what this is -->
-          <button
+          <option
             *ngFor="let tag of tags"
             value="{{ this.tag._id }}"
             class="bg-white border border-black w-1/2 h-10"
           >
             <div
-              (click)="tagInput.value = this.tag.name; setValue(this.tag._id)"
+              (keyup.arrowdown)="tagInput.value = this.tag.name; setValue(this.tag._id)"
             >
               {{ this.tag.name }}
             </div>
-          </button>
+          </option>
 
           <!-- Search Button -->
           <button
@@ -142,7 +142,7 @@
 
     <!-- Background Gradient -->
     <div
-      class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+      class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-60rem)]"
       aria-hidden="true"
     >
       <div

@@ -197,6 +197,7 @@ const getAllUsersFromTagById = async (req, res) => {
       lastName: user.lastName,
       middleInitial: user.middleInitial,
       email: user.email,
+      phone: user.phoneNumber,
       role: user.role,
       tags: [],
     }
