@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  isSuccess: Boolean = false;
+  isError: Boolean = false;
+
   // CREATE LOGIN FORM
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]), // make sure it is a valid email address
@@ -22,6 +25,9 @@ export class LoginComponent {
 
   // On Submit Function
   onSubmit() {
+    this.isSuccess = false;
+    this.isError = false;
+
     if (this.loginForm.invalid) return;
 
     this.authSubscription.add(
@@ -29,9 +35,11 @@ export class LoginComponent {
         .loginUser(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe(
           (response) => {
+            this.isSuccess = true;
             this.router.navigate(['/']);
           },
           (error) => {
+            this.isError = true;
             console.error('Error:', error); // Handle error
           }
         )

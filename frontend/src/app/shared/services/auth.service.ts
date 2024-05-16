@@ -27,7 +27,6 @@ export class AuthService {
 
   registerUser(
     firstName: string,
-    middleInitial: string,
     lastName: string,
     email: string,
     password: string,
@@ -36,7 +35,6 @@ export class AuthService {
   ): Observable<any> {
     const credentials = {
       firstName,
-      middleInitial,
       lastName,
       email,
       password,
