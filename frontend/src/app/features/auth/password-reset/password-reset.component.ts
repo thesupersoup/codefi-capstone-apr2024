@@ -21,7 +21,7 @@ export class PasswordResetComponent {
 
   onSubmit() {
     this.authService
-      .resetPassword(this.passwordResetForm.value.email)
+      .forgotPassword(this.passwordResetForm.value.email)
       .subscribe((res) => {
         this.isSuccess = !!res;
       });
