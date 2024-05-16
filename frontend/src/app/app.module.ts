@@ -26,6 +26,9 @@ import { GeneralComponent } from './features/results-page/general/general.compon
 import { ContractorComponent } from './features/results-page/contractor/contractor.component';
 import { FreelancerComponent } from './features/results-page/freelancer/freelancer.component';
 import { FooterComponent } from './features/footer/footer.component';
+import { PasswordResetComponent } from './features/auth/password-reset/password-reset.component';
+import { ResultsFilterPipe } from './shared/pipes/resultspipe';
+import { ResetPasswordComponent } from './features/auth/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { FooterComponent } from './features/footer/footer.component';
     ContractorComponent,
     FreelancerComponent,
     FooterComponent,
+    PasswordResetComponent,
+    ResultsFilterPipe,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
