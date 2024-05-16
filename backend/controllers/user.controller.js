@@ -76,6 +76,7 @@ const getAllUserDataById = async (req, res) => {
 	return successfulRes({
 		res,
 		data: {
+			id: userId,
 			firstName: user.firstName,
 			middleInitial: user.middleInitial,
 			lastName: user.lastName,

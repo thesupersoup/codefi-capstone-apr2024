@@ -1,9 +1,10 @@
 export class User {
+  id: string;
   _id?: string;
   firstName?: string;
   lastName?: string;
-  middleInitial?: string;
   phoneNumber?: string;
+  profilePicture?: string;
   email?: string;
   role?: string;
   tags?: [string];
