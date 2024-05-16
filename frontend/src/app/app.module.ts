@@ -27,6 +27,7 @@ import { FreelancerComponent } from './features/results-page/freelancer/freelanc
 import { FooterComponent } from './features/footer/footer.component';
 import { PasswordResetComponent } from './features/auth/password-reset/password-reset.component';
 import { ResultsFilterPipe } from './shared/pipes/resultspipe';
+import { ResetPasswordComponent } from './features/auth/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ResultsFilterPipe } from './shared/pipes/resultspipe';
     FooterComponent,
     PasswordResetComponent,
     ResultsFilterPipe,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
