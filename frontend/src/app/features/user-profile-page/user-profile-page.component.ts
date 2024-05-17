@@ -3,9 +3,16 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/services/user.service';
 import { TagService } from '../../shared/services/tag.service';
 import { TagViewModel } from '../../shared/models/tag.model';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  EmailValidator,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../shared/models/user.model';
+import { Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -25,9 +32,12 @@ export class UserProfilePageComponent implements OnInit {
   onFileSelected: any;
   tags: TagViewModel[];
   tagID: string;
+  routerLink: any;
 
   constructor(
     private userService: UserService,
+    private router: Router,
+    private authService: AuthService,
     private tagService: TagService,
     private http: HttpClient
   ) {}
@@ -88,7 +98,11 @@ export class UserProfilePageComponent implements OnInit {
   addTagForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
   });
-
+  // PASSWORD CHANGE REROUTE FUNCTION
+  changePassword() {
+    this.router.navigate(['/resetPassword']);
+  }
+  //TODO: FIX THIS SHIT
   autoSearch() {
     const searchResults = this.tagService
       .getTagsByName(this.addTagForm.value.name)
@@ -110,8 +124,7 @@ export class UserProfilePageComponent implements OnInit {
 
 // MAIN TO DOS
 //TODO: add tag to local storage to show while hitting backend
-//TODO: pull in auto search into createtag
-//TODO: add password change/reset logic
+//TODO: profile img reload on navbar
 
 // SECONDARY TO DOS
 //TODO: disable add tag button at 5 tags
