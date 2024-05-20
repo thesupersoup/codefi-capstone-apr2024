@@ -14,6 +14,7 @@ export class PasswordResetComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
   isSuccess: Boolean = false;
+  isError: Boolean = false;
 
   private authSubscription = new Subscription();
 
@@ -23,7 +24,11 @@ export class PasswordResetComponent {
     this.authService
       .forgotPassword(this.passwordResetForm.value.email)
       .subscribe((res) => {
-        this.isSuccess = !!res;
+        if (res) {
+          this.isSuccess = true;
+        } else {
+          this.isError = true;
+        }
       });
   }
 }

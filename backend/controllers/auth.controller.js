@@ -212,7 +212,7 @@ const forgotPassword = async (req, res) => {
     await sendResetPasswordEmail({
       name: user.name,
       email: user.email,
-      origin: "http://localhost:4200",
+      url: "http://localhost:4200",
     });
 
     await user.save();
