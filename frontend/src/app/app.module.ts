@@ -29,6 +29,7 @@ import { PasswordResetComponent } from './features/auth/password-reset/password-
 import { ResultsFilterPipe } from './shared/pipes/resultspipe';
 import { SuccessMsgComponent } from './shared/components/success-msg/success-msg.component';
 import { ErrorMsgComponent } from './shared/components/error-msg/error-msg.component';
+import { ResetPasswordComponent } from './features/auth/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ErrorMsgComponent } from './shared/components/error-msg/error-msg.compo
     ResultsFilterPipe,
     SuccessMsgComponent,
     ErrorMsgComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

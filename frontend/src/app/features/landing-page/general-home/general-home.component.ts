@@ -65,4 +65,29 @@ export class GeneralHomeComponent implements OnInit{
   switch() {
     this.currentView = this.viewService.changeView()
   }
+
+  index = -1;
+  domEles;
+  keyDown(e: KeyboardEvent) {
+    if(e.key === 'ArrowDown') {
+      this.moveDown();
+      event.preventDefault()
+    } else if (e.key ==='ArrowUp') {
+      this.moveUp();
+      event.preventDefault()
+    }
+
+
+
+  }
+
+  moveDown() {
+    this.index++
+
+  }
+
+  moveUp() {
+    this.index--
+
+  }
 }

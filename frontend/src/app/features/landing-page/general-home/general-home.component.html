@@ -75,6 +75,7 @@
         </p>
 
         <!-- Search Form -->
+        <div class="flex flex-col">
         <form
           [formGroup]="searchForm"
           (input)="autoSearch()"
@@ -88,11 +89,13 @@
           }}</label>
 
           <!-- Search Input -->
+
           <input
             #tagInput
             formControlName="tag"
             id="tag"
             type="text"
+            tabindex="0"
             [placeholder]="
               currentView
                 ? 'What type of freelancer are you looking for?'
@@ -101,18 +104,7 @@
             class="flex-grow pl-5 md:pl-8 bg-transparent outline-none border-none focus:ring-transparent text-sm md:text-lg lg:text-xl text-slate-600 placeholder-slate-400"
           />
 
-          <!-- TSK: Trace... don't know what this is -->
-          <option
-            *ngFor="let tag of tags"
-            value="{{ this.tag._id }}"
-            class="bg-white border border-black w-1/2 h-10"
-          >
-            <div
-              (keyup.arrowdown)="tagInput.value = this.tag.name; setValue(this.tag._id)"
-            >
-              {{ this.tag.name }}
-            </div>
-          </option>
+
 
           <!-- Search Button -->
           <button
@@ -136,7 +128,18 @@
               />
             </svg>
           </button>
+
         </form>
+        <button
+        *ngFor="let tag of tags; let i = selectedIndex"
+        [tabIndex]="selectedIndex"
+        value="{{ this.tag._id }}"
+        class="bg-white border border-2 border-t-0 border-inherit rounded mx-auto w-11/12 h-10 focus:bg-slate-50"
+        (click)="tagInput.value = this.tag.name; setValue(this.tag._id);onSubmit()">
+        <span>{{ this.tag.name }}</span>
+        </button>
+
+      </div>
       </div>
     </div>
 
@@ -171,3 +174,7 @@
     </div>
   </div>
 </main>
+
+
+
+

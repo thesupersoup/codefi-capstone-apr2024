@@ -13,6 +13,7 @@ import { ContractorHomeComponent } from './features/landing-page/contractor-home
 import { GeneralComponent } from './features/results-page/general/general.component';
 import { ContractorComponent } from './features/results-page/contractor/contractor.component';
 import { PasswordResetComponent } from './features/auth/password-reset/password-reset.component';
+import { ResetPasswordComponent } from './features/auth/reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'passwordReset',
     component: PasswordResetComponent,
+  },
+  {
+    path: 'resetPassword',
+    component: ResetPasswordComponent,
   },
 ];
 

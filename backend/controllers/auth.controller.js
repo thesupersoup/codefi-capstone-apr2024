@@ -11,7 +11,6 @@ const {
 const {
   sendVerificationEmail,
   sendResetPasswordEmail,
-
 } = require("../lib/emails/nodemailer");
 
 // * CONTROLLERS * //
@@ -209,24 +208,13 @@ const forgotPassword = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user) {
-    // Create password token
-    const passwordToken = crypto.randomBytes(70).toString("hex");
-
     // Send email
     await sendResetPasswordEmail({
       name: user.name,
       email: user.email,
-      token: passwordToken,
       origin: "http://localhost:4200",
     });
 
-    // Ten Minutes
-    const tenMinutes = 1000 * 60 * 10;
-    // Password Token Expire Date
-    const passwordTokenExpireDate = new Date(Date.now() + tenMinutes);
-
-    user.passwordToken = passwordToken;
-    user.passwordTokenExpireDate = passwordTokenExpireDate;
     await user.save();
 
     // send sucess message
@@ -237,10 +225,10 @@ const forgotPassword = async (req, res) => {
 // Reset Password
 const resetPassword = async (req, res) => {
   // Extract email, token, and password from request
-  const { email, token, password } = req.body;
+  const { email, password } = req.body;
 
   // Check for email, token, and password
-  if (!token || !email || !password) {
+  if (!email || !password) {
     return res.status(400).json({ msg: "Please Provide All Values" });
   }
 
@@ -248,17 +236,8 @@ const resetPassword = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user) {
-    // Current Date
-    const currentDate = Date.now();
-    if (
-      user.passwordToken === token &&
-      user.passwordTokenExpireDate > currentDate
-    ) {
-      user.password = password;
-      user.passwordToken = null;
-      user.passwordTokenExpireDate = null;
-      await user.save();
-    }
+    user.password = password;
+    await user.save();
   }
 
   res.status(200).json({ msg: "Password Reset" });
