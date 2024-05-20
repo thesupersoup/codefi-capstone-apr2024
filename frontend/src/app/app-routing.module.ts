@@ -5,6 +5,7 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { ResultsPageComponent } from './features/results-page/results-page.component';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { VerifyComponent } from './features/auth/verify/verify.component';
+import { UserProfilePageComponent } from './features/user-profile-page/user-profile-page.component';
 import path from 'path';
 import { GeneralHomeComponent } from './features/landing-page/general-home/general-home.component';
 import { FreelancerComponent } from './features/results-page/freelancer/freelancer.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
     path: 'results/:id',
     component: ResultsPageComponent,
   },
+  { path: 'userprofile', component: UserProfilePageComponent },
 
   {
     path: 'passwordReset',
