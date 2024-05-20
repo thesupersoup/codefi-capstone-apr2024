@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
+  isSuccess: Boolean = false;
+  isError: Boolean = false;
+
   // CREATE LOGIN FORM
   registerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
-    middleInitial: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required]),
     role: new FormControl(''),
@@ -26,15 +28,15 @@ export class RegisterComponent {
   constructor(private authService: AuthService) {}
   // On Submit Function
   onSubmit() {
+    this.isError = false;
+    this.isSuccess = false;
+
     if (this.registerForm.invalid) return;
-    console.log(this.registerForm.value);
-    console.log(this.registerForm.value.phoneNumber);
 
     this.authSubscription.add(
       this.authService
         .registerUser(
           this.registerForm.value.firstName,
-          this.registerForm.value.middleInitial,
           this.registerForm.value.lastName,
           this.registerForm.value.email,
           this.registerForm.value.password,
@@ -43,9 +45,11 @@ export class RegisterComponent {
         )
         .subscribe(
           (response) => {
+            this.isSuccess = true;
             console.log(response);
           },
           (error) => {
+            this.isError = true;
             console.error('Error:', error); // Handle error
           }
         )

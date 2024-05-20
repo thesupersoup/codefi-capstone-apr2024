@@ -1,0 +1,27 @@
+<!-- error-notification.component.html -->
+<div
+  *ngIf="show"
+  class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative flex items-center justify-between"
+  role="alert"
+>
+  <div class="flex-grow">
+    <strong class="font-bold">Uh-Oh!</strong>
+    <span class="ml-1">{{ message }}</span>
+  </div>
+  <button
+    class="ml-4 p-1 rounded-full text-red-500 hover:text-white hover:bg-red-400 transition-colors duration-200 ease-in-out focus:outline-none"
+    (click)="hide()"
+    aria-label="Close"
+  >
+    <svg
+      class="fill-current h-6 w-6"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+    >
+      <title>Close</title>
+      <path
+        d="M14.348 14.849a1.2 1.2 0 1 1-1.697 1.697L10 12.896 7.349 15.546a1.2 1.2 0 1 1-1.697-1.697L8.303 11.2 5.652 8.551a1.2 1.2 0 1 1 1.697-1.697L10 9.505l2.651-2.651a1.2 1.2 0 1 1 1.697 1.697L11.697 11.2l2.651 2.651z"
+      />
+    </svg>
+  </button>
+</div>
