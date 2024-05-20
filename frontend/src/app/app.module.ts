@@ -18,6 +18,7 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { VerifyComponent } from './features/auth/verify/verify.component';
 import { NavbarComponent } from './features/navbar/navbar.component';
 import { ResultsPageComponent } from './features/results-page/results-page.component';
+import { UserProfilePageComponent } from './features/user-profile-page/user-profile-page.component';
 import { ContractorHomeComponent } from './features/landing-page/contractor-home/contractor-home.component';
 import { FreelancerHomeComponent } from './features/landing-page/freelancer-home/freelancer-home.component';
 import { GeneralHomeComponent } from './features/landing-page/general-home/general-home.component';
@@ -40,6 +41,7 @@ import { ResetPasswordComponent } from './features/auth/reset-password/reset-pas
     VerifyComponent,
     NavbarComponent,
     ResultsPageComponent,
+    UserProfilePageComponent,
     ContractorHomeComponent,
     FreelancerHomeComponent,
     GeneralHomeComponent,
