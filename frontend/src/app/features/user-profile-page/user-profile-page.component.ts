@@ -21,18 +21,20 @@ import { AuthService } from '../../shared/services/auth.service';
 })
 export class UserProfilePageComponent implements OnInit {
   user: User = {
-    id: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    role: '',
-    profilePicture: '',
+    id: null,
+    firstName: null,
+    lastName: null,
+    email: null,
+    phoneNumber: null,
+    role: null,
+    profilePicture: null,
   };
-  onFileSelected: any;
+  storeFile: File;
   tags: TagViewModel[];
   tagID: string;
-  routerLink: any;
+  routerLink: string;
+  selectedFile: File = null;
+  isDisplayed = true;
 
   constructor(
     private userService: UserService,
@@ -53,17 +55,16 @@ export class UserProfilePageComponent implements OnInit {
     });
   }
   //IMG UPLOAD FUNCTION
-  selectedFile: File = null;
 
   imgChange(event) {
-    this.onFileSelected = <File>event.target.files[0];
+    this.storeFile = <File>event.target.files[0];
 
     this.onUpload();
   }
 
   onUpload() {
     const fd = new FormData();
-    fd.append('img', this.onFileSelected, this.onFileSelected.name);
+    fd.append('img', this.storeFile, this.storeFile.name);
 
     this.http
       .post('http://localhost:5000/api/v1/users/upload-image', fd, {
@@ -102,7 +103,7 @@ export class UserProfilePageComponent implements OnInit {
   changePassword() {
     this.router.navigate(['/resetPassword']);
   }
-  //TODO: FIX THIS SHIT
+
   autoSearch() {
     const searchResults = this.tagService
       .getTagsByName(this.addTagForm.value.name)
@@ -111,14 +112,8 @@ export class UserProfilePageComponent implements OnInit {
       });
   }
 
-  isDisplayed = true;
-
   showMe() {
-    if (this.isDisplayed) {
-      this.isDisplayed = false;
-    } else {
-      this.isDisplayed = true;
-    }
+    this.isDisplayed = !this.isDisplayed;
   }
 }
 
