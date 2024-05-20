@@ -1,0 +1,18 @@
+.conResults {
+  background: linear-gradient(135deg, #7f1d1d 15%, #b91c1c 15.1%, #ef4444 17.5%, #f1f5f9 17.6%, #cbd5e1 30%, #cbd5e1 70%, #f1f5f9 82.4%, #ef4444 82.5%, #b91c1c 84.9%, #7f1d1d 85%);
+}
+
+.freResults {
+  background: linear-gradient(135deg, #f1f5f9, #64748b 15%, #cbd5e1 15.1%, #f1f5f9 17.5%, #7f1d1d 17.6%, #7f1d1d 82.4%, #f1f5f9 82.5%, #cbd5e1 84.9%, #64748b 85%, #f1f5f9 100%);
+}
+
+#vert {
+  border-left:6px solid #64748b;
+  height: 100%
+}
+
+.text {
+  color: transparent;
+  text-shadow: rgba(0, 0, 0, 10) 0px 0px 8px;
+  user-select: none;
+}

@@ -1,0 +1,3 @@
+<app-contractor-home *ngIf="isAuthorized && isContractor"></app-contractor-home>
+<app-freelancer-home *ngIf="isAuthorized && isFreelancer"></app-freelancer-home>
+<app-general-home *ngIf="!isAuthorized"></app-general-home>
