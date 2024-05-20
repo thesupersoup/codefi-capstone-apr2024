@@ -40,8 +40,8 @@ const sendVerificationEmail = async ({
 };
 
 // Send reset password email
-const sendResetPasswordEmail = async ({ name, email, url }) => {
-  const resetLink = `${url}/resetPassword`; // Create the reset link
+const sendResetPasswordEmail = async ({ name, email, url, resetToken }) => {
+  const resetLink = `${url}/resetPassword?email=${email}&token=${resetToken}`; // Create the reset link
 
   // Create the message
   const message = `<h2>Reset Password</h2><p>${name}, Please click on the following link to reset your password.</p><br /><p><a href="${resetLink}" target="_blank">Reset Password</a> to verify your email</p>`;

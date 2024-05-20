@@ -21,6 +21,8 @@ export class PasswordResetComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
+    this.isError = false;
+    this.isSuccess = false;
     this.authService
       .forgotPassword(this.passwordResetForm.value.email)
       .subscribe((res) => {

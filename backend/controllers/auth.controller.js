@@ -194,53 +194,73 @@ const loginUser = async (req, res) => {
   successfulRes({ res, data: { user: tokenUser } });
 };
 
-// Forgot Password Controller
 const forgotPassword = async (req, res) => {
-  // Extract email from request
   const { email } = req.body;
 
-  // Check for email
   if (!email) {
-    return res.status(400).json({ msg: "Please provide email" });
+    return unauthorizedRes({ res });
   }
 
-  // Find User
   const user = await User.findOne({ email });
 
-  if (user) {
-    // Send email
-    await sendResetPasswordEmail({
-      name: user.name,
-      email: user.email,
-      url: "http://localhost:4200",
-    });
-
-    await user.save();
-
-    // send sucess message
-    res.status(200).json({ msg: "Password Reset Email Sent" });
+  if (!user) {
+    return unauthorizedRes({ res });
   }
+
+  // Generate a unique token
+  const resetToken = crypto.randomBytes(32).toString("hex");
+
+  // Set token and expiry on user profile
+  user.passwordToken = resetToken;
+  user.resetPasswordExpire = Date.now() + 3600000;
+
+  await user.save();
+
+  // Send email with reset token
+  await sendResetPasswordEmail({
+    name: user.name,
+    email: user.email,
+    url: `http://localhost:4200`,
+    resetToken: resetToken,
+  });
+
+  // Send Success Email
+  successfulRes({ res, data: { msg: "Reset password email has been sent" } });
 };
 
-// Reset Password
+// Reset Password Controller
 const resetPassword = async (req, res) => {
-  // Extract email, token, and password from request
-  const { email, password } = req.body;
+  const { email, token, password } = req.body;
 
-  // Check for email, token, and password
-  if (!email || !password) {
+  if (!email || !token || !password) {
     return res.status(400).json({ msg: "Please Provide All Values" });
   }
 
-  // Find User
-  const user = await User.findOne({ email });
+  const user = await User.findOne({
+    email: email,
+    passwordToken: token,
+  });
 
-  if (user) {
-    user.password = password;
-    await user.save();
+  if (!user) {
+    return unsuccessfulRes({ res });
   }
 
-  res.status(200).json({ msg: "Password Reset" });
+  // if the experation date is already passed
+  if (user.resetPasswordExpire < Date.now()) {
+    return unsuccessfulRes({
+      res,
+      status: 400,
+      msg: "Password reset token is expired",
+    });
+  }
+
+  user.password = password;
+  user.resetPasswordToken = ""; // Clear reset token
+  user.resetPasswordExpire = ""; // Clear reset token expiry
+  await user.save();
+
+  // send success message
+  successfulRes({ res, data: user });
 };
 
 // Logout User
