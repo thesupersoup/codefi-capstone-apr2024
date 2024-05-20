@@ -5,7 +5,7 @@ const nodemailerConfig = require("./nodemailer-config");
 // * FUNCTIONS
 // Send email
 const sendEmail = async ({
-  from = '"John McTesterson" <test@email.com>',
+  from = "officiallocallancer@gmail.com",
   to,
   subject,
   html,
