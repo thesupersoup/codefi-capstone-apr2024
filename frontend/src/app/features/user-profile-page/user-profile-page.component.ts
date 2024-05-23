@@ -120,6 +120,3 @@ export class UserProfilePageComponent implements OnInit {
 // MAIN TO DOS
 //TODO: add tag to local storage to show while hitting backend
 //TODO: profile img reload on navbar
-
-// SECONDARY TO DOS
-//TODO: disable add tag button at 5 tags
