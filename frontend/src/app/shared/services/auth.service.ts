@@ -27,7 +27,6 @@ export class AuthService {
 
   registerUser(
     firstName: string,
-    middleInitial: string,
     lastName: string,
     email: string,
     password: string,
@@ -36,7 +35,6 @@ export class AuthService {
   ): Observable<any> {
     const credentials = {
       firstName,
-      middleInitial,
       lastName,
       email,
       password,
@@ -74,8 +72,8 @@ export class AuthService {
     );
   }
 
-  resetPassword(email, password): Observable<any> {
-    const credentials = { email, password };
+  resetPassword(email, password, token): Observable<any> {
+    const credentials = { email, password, token };
     return this.http.post<any>(
       `${this.apiUrl}auth/reset-password`,
       credentials

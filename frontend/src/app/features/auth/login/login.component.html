@@ -83,4 +83,14 @@
       >
     </p>
   </div>
+  <div class="pt-5 text-center w-96 mx-auto">
+    <app-success-msg
+      *ngIf="isSuccess"
+      [message]="'You are successfully logged in!'"
+    ></app-success-msg>
+    <app-error-msg
+      *ngIf="isError"
+      [message]="'No accounts with these credentials were found.'"
+    ></app-error-msg>
+  </div>
 </main>
